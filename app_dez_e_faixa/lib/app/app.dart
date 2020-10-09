@@ -4,11 +4,13 @@ import 'package:app_dez_e_faixa/app/pages/nova_pelada/page_definir_times.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/page_lista_jogadores_nova_pelada.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/page_listar_times.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/page_selecionar_jogadores.dart';
+
+import 'package:app_dez_e_faixa/app/pages/jogadores/page_lista_jogadores.dart';
+ */
+import 'package:app_dez_e_faixa/app/pages/partida_rapida/page_partidarapida.dart';
+import 'package:app_dez_e_faixa/app/provider/controller_global_jogador.dart';
 import 'package:app_dez_e_faixa/app/pages/partida_rapida/page_configpartida.dart';
 import 'package:app_dez_e_faixa/app/pages/page_homepage.dart';
-import 'package:app_dez_e_faixa/app/pages/jogadores/page_lista_jogadores.dart';
-import 'package:app_dez_e_faixa/app/pages/partida_rapida/page_partidarapida.dart'; */
-import 'package:app_dez_e_faixa/app/provider/controller_global_jogador.dart';
 import 'package:app_dez_e_faixa/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,17 +31,9 @@ class App extends StatelessWidget {
           primarySwatch: createMaterialColor(Color(0xFF05500a)),
         ),
         routes: {
-          /* AppRoutes.HOME: (_) => PaginaInicial(),
+          AppRoutes.HOME: (_) => PaginaInicial(),
           AppRoutes.CONFIG_PARTIDA_RAPIDA: (_) => PageConfigurarPartidaRapida(),
           AppRoutes.PARTIDA_RAPIDA: (_) => PartidaRapida(),
-          AppRoutes.LISTAR_JOGADORES: (_) => PageListaJogadores(),
-          AppRoutes.FORM_JOGADOR: (_) => PageFormJogador(),
-          AppRoutes.LISTAR_JOGADORES_PELADA: (_) =>
-              PageListaJogadoresNovaPelada(),
-          AppRoutes.SELECIONAR_JOGADORES: (_) => PageSelecionarJogadores(),
-          AppRoutes.CONFIG_PELADA: (_) => PageConfigPelada(),
-          AppRoutes.DEFINIR_TIMES: (_) => PageDefinirTimes(),
-          AppRoutes.LISTAR_TIMES: (_) => PageListaTimes(), */
         },
       ),
     );

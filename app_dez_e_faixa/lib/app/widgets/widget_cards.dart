@@ -10,7 +10,9 @@ class Cards extends StatelessWidget {
 
   final String icone;
 
-  const Cards({Key key, this.rota, this.nomeCard, this.icone})
+  final bool enabled;
+
+  const Cards({Key key, this.rota, this.nomeCard, this.icone, this.enabled})
       : super(key: key);
 
   @override
@@ -18,10 +20,10 @@ class Cards extends StatelessWidget {
     return GestureDetector(
       onLongPress: () {},
       onTap: () {
-        Navigator.of(context).pushNamed(rota);
+        enabled ? Navigator.of(context).pushNamed(rota) : print("destivado");
       },
       child: Card(
-        color: Color(0xFF05500A),
+        color: enabled ? Color(0xFF05500A) : Colors.grey,
         elevation: 2,
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -42,7 +44,9 @@ class Cards extends StatelessWidget {
                       child: Text(nomeCard,
                           style: GoogleFonts.ropaSans(
                               textStyle: TextStyle(
-                                  color: Color(0xFFA8FFAE),
+                                  color: enabled
+                                      ? Color(0xFFA8FFAE)
+                                      : Colors.black54,
                                   fontSize: 22,
                                   fontWeight: FontWeight.w300))),
                     ),
@@ -67,7 +71,7 @@ class Cards extends StatelessWidget {
                           child: Image.asset(
                             "assets/$icone",
                             height: 70,
-                            color: Color(0XFFA8FFAE),
+                            color: enabled ? Color(0xFFA8FFAE) : Colors.black54,
                           ),
                         ),
                       ],
