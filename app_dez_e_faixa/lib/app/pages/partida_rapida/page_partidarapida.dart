@@ -1,6 +1,6 @@
 import 'package:app_dez_e_faixa/app/pages/partida_rapida/controller/controller_partida_rapida.dart';
-import 'package:app_dez_e_faixa/app/widgets/widget_countdown_partida_rapida.dart';
-import 'package:app_dez_e_faixa/app/widgets/widget_placar_partidaRapida.dart';
+import 'package:app_dez_e_faixa/app/pages/partida_rapida/widget/widget_countdown_partida_rapida.dart';
+import 'package:app_dez_e_faixa/app/pages/partida_rapida/widget/widget_placar_partidaRapida.dart';
 import 'package:flutter/material.dart';
 
 class PartidaRapida extends StatelessWidget {

@@ -1,14 +1,13 @@
-//import 'package:app_dez_e_faixa/app/pages/partida_rapida/controller/controller_partida_rapida.dart';
+import 'package:app_dez_e_faixa/app/pages/partida_rapida/controller/controller_partida_rapida.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 import 'package:mobx/mobx.dart';
 
 class CountDownTimer extends StatefulWidget {
-  // final ControllerPartidaRapida controle;
-  var controle;
+  final ControllerPartidaRapida controle;
   @required
-  CountDownTimer({Key key, this.controle}) : super(key: key);
+  const CountDownTimer({Key key, this.controle}) : super(key: key);
 
   @override
   _CountDownTimerState createState() => _CountDownTimerState();
@@ -312,130 +311,143 @@ class _CountDownTimerState extends State<CountDownTimer>
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
-    return AnimatedBuilder(
-        animation: controller,
-        builder: (context, child) {
-          return Stack(
-            children: <Widget>[
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  color: Colors.transparent,
-                  height: controller.value * MediaQuery.of(context).size.height,
+    return Container(
+      child: AnimatedBuilder(
+          animation: controller,
+          builder: (context, child) {
+            return Stack(
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    color: Colors.transparent,
+                    height:
+                        controller.value * MediaQuery.of(context).size.height,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Expanded(
-                      child: Align(
-                        alignment: FractionalOffset.center,
-                        child: AspectRatio(
-                          aspectRatio: 1.0,
-                          child: Stack(
-                            children: <Widget>[
-                              Positioned.fill(
-                                child: CustomPaint(
-                                    painter: CustomTimerPainter(
-                                  animation: controller,
-                                  backgroundColor: Colors.white,
-                                  color: themeData.indicatorColor,
-                                )),
-                              ),
-                              Align(
-                                alignment: FractionalOffset.center,
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(
-                                      "Tempo",
-                                      style: TextStyle(
-                                          fontSize: 20.0, color: Colors.white),
-                                    ),
-                                    Text(
-                                      timerString,
-                                      style: TextStyle(
-                                          fontSize: 112.0, color: Colors.white),
-                                    ),
-                                  ],
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Expanded(
+                        child: Align(
+                          alignment: FractionalOffset.center,
+                          child: AspectRatio(
+                            aspectRatio: 1.0,
+                            child: Stack(
+                              children: <Widget>[
+                                Positioned.fill(
+                                  child: CustomPaint(
+                                      painter: CustomTimerPainter(
+                                    animation: controller,
+                                    backgroundColor: Colors.white,
+                                    color: themeData.indicatorColor,
+                                  )),
                                 ),
-                              ),
-                            ],
+                                Align(
+                                  alignment: FractionalOffset.center,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        "Tempo",
+                                        style: TextStyle(
+                                            fontSize: 20.0,
+                                            color: Colors.white),
+                                      ),
+                                      Text(
+                                        timerString,
+                                        style: TextStyle(
+                                            fontSize: 112.0,
+                                            color: Colors.white),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    AnimatedBuilder(
-                        animation: controller,
-                        builder: (context, child) {
-                          return Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: controller.isAnimating
-                                ? Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                        Expanded(
-                                          flex: 3,
-                                          child: FloatingActionButton.extended(
-                                              heroTag: 2,
-                                              onPressed: () {
-                                                if (controller.isAnimating) {
-                                                  controller.stop();
-                                                  animando(false);
-                                                }
-                                              },
-                                              icon: _icon,
-                                              label: Text("Parô!")),
-                                        )
-                                      ])
-                                : Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                        Expanded(
-                                          flex: 1,
-                                          child: FloatingActionButton.extended(
-                                              heroTag: 3,
-                                              onPressed: () {
-                                                animando(true);
-                                                controller.reverse(
-                                                    from:
-                                                        controller.value == 0.0
-                                                            ? 1.0
-                                                            : controller.value);
-                                              },
-                                              icon: Icon(Icons.play_arrow),
-                                              label: Text("Jogar")),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 5),
-                                        ),
-                                        Expanded(
-                                          flex: 1,
-                                          child: FloatingActionButton.extended(
-                                              heroTag: 4,
-                                              onPressed: () {
-                                                controller.reset();
-                                              },
-                                              icon: Icon(Icons
-                                                  .settings_backup_restore),
-                                              label: Text("Reiniciar")),
-                                        ),
-                                      ]),
-                          );
-                        }),
-                  ],
+                      AnimatedBuilder(
+                          animation: controller,
+                          builder: (context, child) {
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: controller.isAnimating
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                          Expanded(
+                                            flex: 3,
+                                            child:
+                                                FloatingActionButton.extended(
+                                                    heroTag: 2,
+                                                    onPressed: () {
+                                                      if (controller
+                                                          .isAnimating) {
+                                                        controller.stop();
+                                                        animando(false);
+                                                      }
+                                                    },
+                                                    icon: _icon,
+                                                    label: Text("Parô!")),
+                                          )
+                                        ])
+                                  : Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child:
+                                                FloatingActionButton.extended(
+                                                    heroTag: 3,
+                                                    onPressed: () {
+                                                      animando(true);
+                                                      controller.reverse(
+                                                          from: controller
+                                                                      .value ==
+                                                                  0.0
+                                                              ? 1.0
+                                                              : controller
+                                                                  .value);
+                                                    },
+                                                    icon:
+                                                        Icon(Icons.play_arrow),
+                                                    label: Text("Jogar")),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child:
+                                                FloatingActionButton.extended(
+                                                    heroTag: 4,
+                                                    onPressed: () {
+                                                      controller.reset();
+                                                    },
+                                                    icon: Icon(Icons
+                                                        .settings_backup_restore),
+                                                    label: Text("Reiniciar")),
+                                          ),
+                                        ]),
+                            );
+                          }),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          );
-        });
+              ],
+            );
+          }),
+    );
   }
 
   animando(bool animando) {

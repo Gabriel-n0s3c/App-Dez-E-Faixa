@@ -36,12 +36,20 @@ abstract class _ControllerPartidaRapidaBase with Store {
 
   @action
   setNomeTime1(String value) {
-    nomeTime1 = value;
+    if (value == "" || value.isEmpty) {
+      nomeTime1 = "Nome Time 1";
+    } else {
+      nomeTime1 = value;
+    }
   }
 
   @action
   setNomeTime2(String value) {
-    nomeTime2 = value;
+    if (value == "" || value.isEmpty) {
+      nomeTime2 = "Nome Time 2";
+    } else {
+      nomeTime2 = value;
+    }
   }
 
   @action

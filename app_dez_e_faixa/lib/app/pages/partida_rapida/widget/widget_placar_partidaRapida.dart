@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class PlacarPartidaRapida extends StatelessWidget {
-  PlacarPartidaRapida({this.controller});
+  const PlacarPartidaRapida({this.controller});
   @required
-  var controller;
+  final controller;
 
   @override
   Widget build(BuildContext context) {
