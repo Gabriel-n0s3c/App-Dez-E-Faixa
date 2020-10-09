@@ -105,13 +105,22 @@ class PageListaTimes extends StatelessWidget {
                           icon: Icon(Icons.more_vert),
                           onSelected: (a) {
                             print(a);
-                            controller.removerTime(indexTime);
+                            a == 1
+                                ? controller.removerTime(indexTime)
+                                : _alterarNomeTIme(
+                                    context: context,
+                                    controller: controller,
+                                    indexTime: indexTime);
                           },
                           itemBuilder: (_) => [
                             PopupMenuItem(
                               child: Text("Excluir Time"),
                               value: 1,
-                            )
+                            ),
+                            PopupMenuItem(
+                              child: Text("Alterar Nome"),
+                              value: 2,
+                            ),
                           ],
                         ),
                       )
@@ -197,6 +206,48 @@ class PageListaTimes extends StatelessWidget {
         );
       },
     );
+  }
+
+  _alterarNomeTIme(
+      {context, indexTime, ControllerListarTimesPelada controller}) {
+    Time time = Time();
+    showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: Text("Alterar nome do Time"),
+            content: TextField(
+              maxLength: 15,
+              onChanged: time.setNomeTime,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Novo nome',
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Cancelar'),
+              ),
+              FlatButton(
+                onPressed: () {
+                  if (time.nomeTime.length < 2 || time.nomeTime == "") {
+                    nomeInvalido(context);
+                  } else {
+                    controller.setNomeTime(
+                      value: time.nomeTime,
+                      index: indexTime,
+                    );
+                    Navigator.pop(context);
+                  }
+                },
+                child: Text('Salvar'),
+              ),
+            ],
+          );
+        });
   }
 
   _removerJogador(
