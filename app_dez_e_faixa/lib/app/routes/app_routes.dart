@@ -14,4 +14,5 @@ class AppRoutes {
   static const CONFIG_PELADA = '/config-pelada';
   static const LISTAR_TIMES = '/listar-times';
   static const DEFINIR_TIMES = '/definir-times';
+  static const PARTIDA_PELADA = '/partida-pelada';
 }

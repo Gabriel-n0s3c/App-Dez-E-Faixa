@@ -37,7 +37,7 @@ class PageListaTimes extends StatelessWidget {
         builder: (context, child) {
           return BottomNavigationBar(
             currentIndex: controllerPage?.page?.round() ?? 0,
-            backgroundColor: Colors.grey[300],
+            backgroundColor: Colors.white,
             onTap: (a) {
               controllerPage.jumpToPage(a);
             },
