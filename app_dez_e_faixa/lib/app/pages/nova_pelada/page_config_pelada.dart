@@ -80,7 +80,7 @@ class PageConfigPelada extends StatelessWidget {
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Text(
-                    "Iniciar partida!",
+                    "Separar Times!",
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white),
                   ),

@@ -1,8 +1,7 @@
 import 'package:app_dez_e_faixa/app/model/jogador.dart';
 import 'package:app_dez_e_faixa/app/model/time.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/controller/controller_listar_times_pelada.dart';
-import 'package:app_dez_e_faixa/app/routes/app_routes.dart';
-import 'package:app_dez_e_faixa/app/widgets/widget_raised_button_jogar.dart';
+import 'package:app_dez_e_faixa/app/pages/nova_pelada/widget/widget_raised_button_jogar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,7 +37,7 @@ class WidgetPageListaTime extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 5),
                     child: WidgetRaisedButtonJogar(
-                      appRoute: AppRoutes.PARTIDA_PELADA,
+                      controller: controller,
                     ),
                   ),
                 ),

@@ -26,10 +26,6 @@ abstract class _ControllerSelecionarJogadorBase with Store {
   @observable
   ObservableList<Jogador> selecionados = ObservableList<Jogador>();
 
-  @computed
-  ObservableList<Jogador> get naoSelecionados =>
-      todos.where((element) => !element.isSelected).toList().asObservable();
-
   @observable
   ObservableList<Jogador> todos = ObservableList<Jogador>();
 
@@ -38,6 +34,10 @@ abstract class _ControllerSelecionarJogadorBase with Store {
 
   @computed
   int get totalSelecionado => selecionados.length;
+
+  @computed
+  ObservableList<Jogador> get naoSelecionados =>
+      todos.where((element) => !element.isSelected).toList().asObservable();
 
   @action
   _carregarLista() {
@@ -62,6 +62,7 @@ abstract class _ControllerSelecionarJogadorBase with Store {
   atualizaCheckbox(Jogador item, bool value) {
     item.setCheck(value);
     item.getIsSelected ? selecionados.add(item) : selecionados.remove(item);
+    selecionados.asObservable();
   }
 
   @action

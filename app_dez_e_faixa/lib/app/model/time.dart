@@ -11,10 +11,18 @@ abstract class _TimeBase with Store {
   @observable
   ObservableList<Jogador> jogadores = ObservableList<Jogador>();
 
+  @observable
+  bool isSelected;
+
   @action
   setNomeTime(String nome) {
     nomeTime = nome;
   }
 
-  _TimeBase({this.nomeTime, this.jogadores});
+  @action
+  setCheck(bool value) {
+    isSelected = value;
+  }
+
+  _TimeBase({this.isSelected, this.nomeTime, this.jogadores});
 }

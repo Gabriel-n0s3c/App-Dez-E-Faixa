@@ -15,6 +15,7 @@ abstract class _ControllerListarTimesPeladaBase with Store {
   _ControllerListarTimesPeladaBase({this.global, this.configPelada}) {
     separarTimes();
   }
+  ObservableList<Time> timesSelecionados = ObservableList<Time>();
 
   @observable
   ObservableList<Time> times = ObservableList<Time>();
@@ -86,20 +87,21 @@ abstract class _ControllerListarTimesPeladaBase with Store {
     times[index].jogadores.clear();
     times.removeAt(index);
 
-    var t = ObservableList<Time>();
+    var t = ObservableList<Time>().asObservable();
     t = times;
     times = t;
     t = null;
   }
 
   @action
-  separarTimes() async {
+  separarTimes() {
     List<Jogador> selecionados = configPelada.selecionarJogador.selecionados;
     selecionados.shuffle();
 
     for (var i = 0; i < selecionados.length; i += configPelada.qtdPorTime) {
       times.add(Time(
           nomeTime: null,
+          isSelected: false,
           jogadores: selecionados
               .sublist(
                   i,
@@ -108,5 +110,24 @@ abstract class _ControllerListarTimesPeladaBase with Store {
                       : i + configPelada.qtdPorTime)
               .asObservable()));
     }
+  }
+
+  @action
+  atualizaCheckbox(Time item, bool value) {
+    if (timesSelecionados.length < 2) {
+      print("entrou ${timesSelecionados.length}");
+      item.setCheck(value);
+      item.isSelected
+          ? timesSelecionados.add(item)
+          : timesSelecionados.remove(item);
+    } else {
+      // ignore: unnecessary_statements
+      item.isSelected ? timesSelecionados.remove(item) : null;
+      item.setCheck(false);
+    }
+    var t = ObservableList<Time>();
+    t = times;
+    times = t;
+    t = null;
   }
 }

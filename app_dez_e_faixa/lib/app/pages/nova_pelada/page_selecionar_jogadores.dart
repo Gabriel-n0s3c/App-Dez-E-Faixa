@@ -14,9 +14,9 @@ class PageSelecionarJogadores extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Observer(builder: (_) {
+        title: Observer(builder: (context) {
           return Text(controller.selecionados.length == 0
-              ? " Selecione os jogadores"
+              ? "Selecione os jogadores"
               : "${controller.selecionados.length} Selecione os jogadores");
         }),
         actions: [
