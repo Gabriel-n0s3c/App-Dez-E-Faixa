@@ -57,9 +57,21 @@ class WidgetRaisedButtonJogar extends StatelessWidget {
             title: Text("Selecione os 2 times! "),
             actions: [
               FlatButton(
-                  onPressed: () => Navigator.of(context).pushNamed(
-                      AppRoutes.PARTIDA_PELADA,
-                      arguments: controller),
+                  onPressed: () {
+                    if (controller.timesSelecionados.length == 2) {
+                      Navigator.of(context).pushNamed(AppRoutes.PARTIDA_PELADA,
+                          arguments: controller);
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Selecione 2 Times!"),
+                          );
+                        },
+                      );
+                    }
+                  },
                   child: Text("ok")),
               FlatButton(
                   onPressed: () => Navigator.pop(context),

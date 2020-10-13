@@ -39,6 +39,21 @@ mixin _$Time on _TimeBase, Store {
     });
   }
 
+  final _$isSelectedAtom = Atom(name: '_TimeBase.isSelected');
+
+  @override
+  bool get isSelected {
+    _$isSelectedAtom.reportRead();
+    return super.isSelected;
+  }
+
+  @override
+  set isSelected(bool value) {
+    _$isSelectedAtom.reportWrite(value, super.isSelected, () {
+      super.isSelected = value;
+    });
+  }
+
   final _$_TimeBaseActionController = ActionController(name: '_TimeBase');
 
   @override
@@ -53,10 +68,22 @@ mixin _$Time on _TimeBase, Store {
   }
 
   @override
+  dynamic setCheck(bool value) {
+    final _$actionInfo =
+        _$_TimeBaseActionController.startAction(name: '_TimeBase.setCheck');
+    try {
+      return super.setCheck(value);
+    } finally {
+      _$_TimeBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 nomeTime: ${nomeTime},
-jogadores: ${jogadores}
+jogadores: ${jogadores},
+isSelected: ${isSelected}
     ''';
   }
 }

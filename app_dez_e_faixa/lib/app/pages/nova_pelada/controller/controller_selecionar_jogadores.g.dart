@@ -9,19 +9,19 @@ part of 'controller_selecionar_jogadores.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ControllerSelecionarJogador on _ControllerSelecionarJogadorBase, Store {
-  Computed<ObservableList<Jogador>> _$naoSelecionadosComputed;
-
-  @override
-  ObservableList<Jogador> get naoSelecionados => (_$naoSelecionadosComputed ??=
-          Computed<ObservableList<Jogador>>(() => super.naoSelecionados,
-              name: '_ControllerSelecionarJogadorBase.naoSelecionados'))
-      .value;
   Computed<int> _$totalSelecionadoComputed;
 
   @override
   int get totalSelecionado => (_$totalSelecionadoComputed ??= Computed<int>(
           () => super.totalSelecionado,
           name: '_ControllerSelecionarJogadorBase.totalSelecionado'))
+      .value;
+  Computed<ObservableList<Jogador>> _$naoSelecionadosComputed;
+
+  @override
+  ObservableList<Jogador> get naoSelecionados => (_$naoSelecionadosComputed ??=
+          Computed<ObservableList<Jogador>>(() => super.naoSelecionados,
+              name: '_ControllerSelecionarJogadorBase.naoSelecionados'))
       .value;
 
   final _$selecionadosAtom =
@@ -140,8 +140,8 @@ mixin _$ControllerSelecionarJogador on _ControllerSelecionarJogadorBase, Store {
 selecionados: ${selecionados},
 todos: ${todos},
 filtrada: ${filtrada},
-naoSelecionados: ${naoSelecionados},
-totalSelecionado: ${totalSelecionado}
+totalSelecionado: ${totalSelecionado},
+naoSelecionados: ${naoSelecionados}
     ''';
   }
 }

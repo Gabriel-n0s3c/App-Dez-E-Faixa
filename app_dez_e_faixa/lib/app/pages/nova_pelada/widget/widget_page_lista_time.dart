@@ -51,111 +51,113 @@ class WidgetPageListaTime extends StatelessWidget {
 
   cadaTimeGrid(ControllerListarTimesPelada controller, int indexTime, Time item,
       context) {
-    return Observer(
-      builder: (_) {
-        return Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18.0),
-          ),
-          elevation: 5,
-          child: Container(
-            color: Colors.transparent,
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            item.nomeTime == null
-                                ? "Time ${indexTime + 1}"
-                                : "${item.nomeTime}",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
+    return Container(
+      child: Observer(
+        builder: (_) {
+          return Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+            ),
+            elevation: 5,
+            child: Container(
+              color: Colors.transparent,
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              item.nomeTime == null
+                                  ? "Time ${indexTime + 1}"
+                                  : "${item.nomeTime}",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: PopupMenuButton(
-                          tooltip: "Opções",
-                          icon: Icon(Icons.more_vert),
-                          onSelected: (a) {
-                            print(a);
-                            a == 1
-                                ? controller.removerTime(indexTime)
-                                : _alterarNomeTime(
-                                    context: context,
-                                    controller: controller,
-                                    indexTime: indexTime);
-                          },
-                          itemBuilder: (_) => [
-                            PopupMenuItem(
-                              child: Text("Excluir Time"),
-                              value: 1,
-                            ),
-                            PopupMenuItem(
-                              child: Text("Alterar Nome"),
-                              value: 2,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 4,
-                  child: Stack(children: [
-                    ScrollConfiguration(
-                      behavior: MyBehavior(),
-                      child: ListView.builder(
-                          physics: ScrollPhysics(),
-                          itemCount: item.jogadores.length,
-                          itemBuilder: (_, index) {
-                            var jogador = item.jogadores[index];
-
-                            return _jogadorCardTime(
-                                index, jogador, context, indexTime, controller);
-                          }),
+                        Expanded(
+                          flex: 2,
+                          child: PopupMenuButton(
+                            tooltip: "Opções",
+                            icon: Icon(Icons.more_vert),
+                            onSelected: (a) {
+                              print(a);
+                              a == 1
+                                  ? controller.removerTime(indexTime)
+                                  : _alterarNomeTime(
+                                      context: context,
+                                      controller: controller,
+                                      indexTime: indexTime);
+                            },
+                            itemBuilder: (_) => [
+                              PopupMenuItem(
+                                child: Text("Excluir Time"),
+                                value: 1,
+                              ),
+                              PopupMenuItem(
+                                child: Text("Alterar Nome"),
+                                value: 2,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
                     ),
-                  ]),
-                ),
-                item.jogadores.length < controller.configPelada.qtdPorTime
-                    ? Expanded(
-                        flex: 1,
-                        child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.only(right: 8.0, bottom: 5),
-                            child: CircleAvatar(
-                              maxRadius: 17,
-                              minRadius: 15,
-                              backgroundColor: Colors.lightGreen,
-                              child: IconButton(
-                                padding: EdgeInsets.all(0),
-                                splashColor: Colors.green,
-                                icon: Icon(Icons.add),
-                                onPressed: () => _adicionarJogador(
-                                    context, controller, indexTime),
+                  ),
+                  Expanded(
+                    flex: 4,
+                    child: Stack(children: [
+                      ScrollConfiguration(
+                        behavior: MyBehavior(),
+                        child: ListView.builder(
+                            physics: ScrollPhysics(),
+                            itemCount: item.jogadores.length,
+                            itemBuilder: (_, index) {
+                              var jogador = item.jogadores[index];
+
+                              return _jogadorCardTime(index, jogador, context,
+                                  indexTime, controller);
+                            }),
+                      ),
+                    ]),
+                  ),
+                  item.jogadores.length < controller.configPelada.qtdPorTime
+                      ? Expanded(
+                          flex: 1,
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 8.0, bottom: 5),
+                              child: CircleAvatar(
+                                maxRadius: 17,
+                                minRadius: 15,
+                                backgroundColor: Colors.lightGreen,
+                                child: IconButton(
+                                  padding: EdgeInsets.all(0),
+                                  splashColor: Colors.green,
+                                  icon: Icon(Icons.add),
+                                  onPressed: () => _adicionarJogador(
+                                      context, controller, indexTime),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      )
-                    : Container(),
-              ],
+                        )
+                      : Container(),
+                ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 

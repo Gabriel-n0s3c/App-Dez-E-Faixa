@@ -32,14 +32,6 @@ mixin _$ControllerListarTimesPelada on _ControllerListarTimesPeladaBase, Store {
     });
   }
 
-  final _$separarTimesAsyncAction =
-      AsyncAction('_ControllerListarTimesPeladaBase.separarTimes');
-
-  @override
-  Future separarTimes() {
-    return _$separarTimesAsyncAction.run(() => super.separarTimes());
-  }
-
   final _$_ControllerListarTimesPeladaBaseActionController =
       ActionController(name: '_ControllerListarTimesPeladaBase');
 
@@ -97,6 +89,30 @@ mixin _$ControllerListarTimesPelada on _ControllerListarTimesPeladaBase, Store {
         .startAction(name: '_ControllerListarTimesPeladaBase.removerTime');
     try {
       return super.removerTime(index);
+    } finally {
+      _$_ControllerListarTimesPeladaBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic separarTimes() {
+    final _$actionInfo = _$_ControllerListarTimesPeladaBaseActionController
+        .startAction(name: '_ControllerListarTimesPeladaBase.separarTimes');
+    try {
+      return super.separarTimes();
+    } finally {
+      _$_ControllerListarTimesPeladaBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic atualizaCheckbox(Time item, bool value) {
+    final _$actionInfo = _$_ControllerListarTimesPeladaBaseActionController
+        .startAction(name: '_ControllerListarTimesPeladaBase.atualizaCheckbox');
+    try {
+      return super.atualizaCheckbox(item, value);
     } finally {
       _$_ControllerListarTimesPeladaBaseActionController
           .endAction(_$actionInfo);

@@ -16,7 +16,7 @@ class PageListaTimes extends StatelessWidget {
     final controllerPage = PageController();
 
     return FutureBuilder(
-        future: Future.delayed(Duration(milliseconds: 500)),
+        future: Future.delayed(Duration(milliseconds: 1000)),
         builder: (c, s) => s.connectionState == ConnectionState.done
             ? Scaffold(
                 appBar: AppBar(

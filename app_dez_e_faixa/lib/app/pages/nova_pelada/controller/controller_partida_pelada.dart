@@ -1,5 +1,5 @@
-import 'package:app_dez_e_faixa/app/model/jogador.dart';
 import 'package:app_dez_e_faixa/app/model/partida.dart';
+import 'package:app_dez_e_faixa/app/model/time.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/controller/controller_listar_times_pelada.dart';
 import 'package:mobx/mobx.dart';
 
@@ -11,16 +11,26 @@ class ControllerPartidaPelada = _ControllerPartidaPeladaBase
 abstract class _ControllerPartidaPeladaBase with Store {
   final ControllerListarTimesPelada controllerListarTimesPelada;
 
-  _ControllerPartidaPeladaBase({this.controllerListarTimesPelada});
+  _ControllerPartidaPeladaBase({
+    this.controllerListarTimesPelada,
+  }) {
+    time1 = controllerListarTimesPelada.timesSelecionados[0];
+    time2 = controllerListarTimesPelada.timesSelecionados[1];
+
+    partida = Partida(
+        placarTime1: 0,
+        placarTime2: 0,
+        tempo: controllerListarTimesPelada.configPelada.tempo);
+  }
 
   @observable
   Partida partida;
 
   @observable
-  ObservableList<Jogador> time1;
+  Time time1;
 
   @observable
-  ObservableList<Jogador> time2;
+  Time time2;
 
   @observable
   @action
