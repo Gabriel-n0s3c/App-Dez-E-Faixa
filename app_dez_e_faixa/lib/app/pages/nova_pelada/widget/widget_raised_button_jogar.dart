@@ -57,6 +57,9 @@ class WidgetRaisedButtonJogar extends StatelessWidget {
             title: Text("Selecione os 2 times! "),
             actions: [
               FlatButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text("Cancelar")),
+              FlatButton(
                   onPressed: () {
                     if (controller.timesSelecionados.length == 2) {
                       Navigator.of(context).pushNamed(AppRoutes.PARTIDA_PELADA,
@@ -73,9 +76,6 @@ class WidgetRaisedButtonJogar extends StatelessWidget {
                     }
                   },
                   child: Text("ok")),
-              FlatButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text("Cancelar")),
             ],
             content: Observer(
               builder: (_) {

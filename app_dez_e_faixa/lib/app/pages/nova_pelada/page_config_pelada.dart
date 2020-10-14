@@ -58,7 +58,8 @@ class PageConfigPelada extends StatelessWidget {
                 controller.definirTimes == 1
                     ? Navigator.of(context).pushNamed(AppRoutes.LISTAR_TIMES,
                         arguments: controller)
-                    : Navigator.of(context).pushNamed(AppRoutes.DEFINIR_TIMES);
+                    : Navigator.of(context).pushNamed(AppRoutes.LISTAR_TIMES,
+                        arguments: controller);
               } else {
                 _dialog(context);
               }

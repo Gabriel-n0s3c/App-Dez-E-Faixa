@@ -128,6 +128,18 @@ mixin _$ControllerListarTimesPelada on _ControllerListarTimesPeladaBase, Store {
   }
 
   @override
+  dynamic naoSepararTimes() {
+    final _$actionInfo = _$_ControllerListarTimesPeladaBaseActionController
+        .startAction(name: '_ControllerListarTimesPeladaBase.naoSepararTimes');
+    try {
+      return super.naoSepararTimes();
+    } finally {
+      _$_ControllerListarTimesPeladaBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic atualizaCheckbox(Time item, bool value) {
     final _$actionInfo = _$_ControllerListarTimesPeladaBaseActionController
         .startAction(name: '_ControllerListarTimesPeladaBase.atualizaCheckbox');
