@@ -17,6 +17,22 @@ mixin _$ControllerListarTimesPelada on _ControllerListarTimesPeladaBase, Store {
               name: '_ControllerListarTimesPeladaBase.getSize'))
           .value;
 
+  final _$timesSelecionadosAtom =
+      Atom(name: '_ControllerListarTimesPeladaBase.timesSelecionados');
+
+  @override
+  ObservableList<Time> get timesSelecionados {
+    _$timesSelecionadosAtom.reportRead();
+    return super.timesSelecionados;
+  }
+
+  @override
+  set timesSelecionados(ObservableList<Time> value) {
+    _$timesSelecionadosAtom.reportWrite(value, super.timesSelecionados, () {
+      super.timesSelecionados = value;
+    });
+  }
+
   final _$timesAtom = Atom(name: '_ControllerListarTimesPeladaBase.times');
 
   @override
@@ -30,6 +46,22 @@ mixin _$ControllerListarTimesPelada on _ControllerListarTimesPeladaBase, Store {
     _$timesAtom.reportWrite(value, super.times, () {
       super.times = value;
     });
+  }
+
+  final _$separarTimesAsyncAction =
+      AsyncAction('_ControllerListarTimesPeladaBase.separarTimes');
+
+  @override
+  Future<ObservableList<Time>> separarTimes() {
+    return _$separarTimesAsyncAction.run(() => super.separarTimes());
+  }
+
+  final _$separadoAsyncAction =
+      AsyncAction('_ControllerListarTimesPeladaBase.separado');
+
+  @override
+  Future<void> separado() {
+    return _$separadoAsyncAction.run(() => super.separado());
   }
 
   final _$_ControllerListarTimesPeladaBaseActionController =
@@ -96,18 +128,6 @@ mixin _$ControllerListarTimesPelada on _ControllerListarTimesPeladaBase, Store {
   }
 
   @override
-  dynamic separarTimes() {
-    final _$actionInfo = _$_ControllerListarTimesPeladaBaseActionController
-        .startAction(name: '_ControllerListarTimesPeladaBase.separarTimes');
-    try {
-      return super.separarTimes();
-    } finally {
-      _$_ControllerListarTimesPeladaBaseActionController
-          .endAction(_$actionInfo);
-    }
-  }
-
-  @override
   dynamic atualizaCheckbox(Time item, bool value) {
     final _$actionInfo = _$_ControllerListarTimesPeladaBaseActionController
         .startAction(name: '_ControllerListarTimesPeladaBase.atualizaCheckbox');
@@ -122,6 +142,7 @@ mixin _$ControllerListarTimesPelada on _ControllerListarTimesPeladaBase, Store {
   @override
   String toString() {
     return '''
+timesSelecionados: ${timesSelecionados},
 times: ${times},
 getSize: ${getSize}
     ''';

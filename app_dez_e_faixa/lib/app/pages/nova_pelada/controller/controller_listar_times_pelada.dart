@@ -1,7 +1,8 @@
+import 'dart:async';
+
 import 'package:app_dez_e_faixa/app/model/jogador.dart';
 import 'package:app_dez_e_faixa/app/model/time.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/controller/controller_config_pelada.dart';
-import 'package:app_dez_e_faixa/app/provider/controller_global_jogador.dart';
 import 'package:mobx/mobx.dart';
 part 'controller_listar_times_pelada.g.dart';
 
@@ -10,11 +11,12 @@ class ControllerListarTimesPelada = _ControllerListarTimesPeladaBase
 
 abstract class _ControllerListarTimesPeladaBase with Store {
   final ControllerConfigPelada configPelada;
-  final ControllerGlobalJogador global;
 
-  _ControllerListarTimesPeladaBase({this.global, this.configPelada}) {
-    separarTimes();
+  _ControllerListarTimesPeladaBase({this.configPelada}) {
+    Timer(Duration(milliseconds: 100), () => separado());
   }
+
+  @observable
   ObservableList<Time> timesSelecionados = ObservableList<Time>();
 
   @observable
@@ -94,13 +96,14 @@ abstract class _ControllerListarTimesPeladaBase with Store {
   }
 
   @action
-  separarTimes() {
+  Future<ObservableList<Time>> separarTimes() async {
     List<Jogador> selecionados = configPelada.selecionarJogador.selecionados;
     selecionados.shuffle();
-
+    final ObservableList<Time> t = ObservableList<Time>();
+    int j = 1;
     for (var i = 0; i < selecionados.length; i += configPelada.qtdPorTime) {
-      times.add(Time(
-          nomeTime: null,
+      t.add(Time(
+          nomeTime: "Time $j",
           isSelected: false,
           jogadores: selecionados
               .sublist(
@@ -109,7 +112,14 @@ abstract class _ControllerListarTimesPeladaBase with Store {
                       ? selecionados.length
                       : i + configPelada.qtdPorTime)
               .asObservable()));
+      j++;
     }
+    return t;
+  }
+
+  @action
+  Future<void> separado() async {
+    times = await separarTimes();
   }
 
   @action

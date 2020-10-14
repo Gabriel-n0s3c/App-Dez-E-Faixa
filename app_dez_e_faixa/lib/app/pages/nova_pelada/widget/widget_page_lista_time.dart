@@ -12,40 +12,43 @@ class WidgetPageListaTime extends StatelessWidget {
   @override
   const WidgetPageListaTime({Key key, this.controller}) : super(key: key);
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (_) {
-        return Container(
-          color: Colors.green,
-          child: Column(
-            children: [
-              Expanded(
-                flex: 10,
-                child: GridView.builder(
-                  padding: EdgeInsets.all(10),
-                  itemCount: controller.getSize,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, childAspectRatio: 0.75),
-                  itemBuilder: (_, indexTime) {
-                    var item = controller.times[indexTime];
-                    return cadaTimeGrid(controller, indexTime, item, context);
-                  },
-                ),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 5),
-                    child: WidgetRaisedButtonJogar(
-                      controller: controller,
+    return Container(
+      color: Colors.green,
+      child: Observer(builder: (_) {
+        return controller.timesSelecionados == null
+            ? Container(
+                child: Center(child: Text("Carregando...")),
+              )
+            : Column(
+                children: [
+                  Expanded(
+                    flex: 10,
+                    child: GridView.builder(
+                      padding: EdgeInsets.all(10),
+                      itemCount: controller.getSize,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2, childAspectRatio: 0.75),
+                      itemBuilder: (_, indexTime) {
+                        var item = controller.times[indexTime];
+                        return cadaTimeGrid(
+                            controller, indexTime, item, context);
+                      },
                     ),
                   ),
-                ),
-              )
-            ],
-          ),
-        );
-      },
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 5),
+                        child: WidgetRaisedButtonJogar(
+                          controller: controller,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              );
+      }),
     );
   }
 
@@ -222,22 +225,25 @@ class WidgetPageListaTime extends StatelessWidget {
             ),
             actions: <Widget>[
               FlatButton(
-                onPressed: () {
-                  Navigator.pop(context);
+                onPressed: () => {
+                  Navigator.pop(context),
                 },
                 child: Text('Cancelar'),
               ),
               FlatButton(
-                onPressed: () {
-                  if (time.nomeTime.length < 2 || time.nomeTime == "") {
-                    nomeInvalido(context);
-                  } else {
-                    controller.setNomeTime(
-                      value: time.nomeTime,
-                      index: indexTime,
-                    );
-                    Navigator.pop(context);
-                  }
+                onPressed: () => {
+                  if (time.nomeTime.length < 2 || time.nomeTime == "")
+                    {
+                      nomeInvalido(context),
+                    }
+                  else
+                    {
+                      controller.setNomeTime(
+                        value: time.nomeTime,
+                        index: indexTime,
+                      ),
+                      Navigator.pop(context),
+                    }
                 },
                 child: Text('Salvar'),
               ),
@@ -258,10 +264,10 @@ class WidgetPageListaTime extends StatelessWidget {
                   onPressed: () => Navigator.pop(context),
                   child: Text("Cancelar")),
               FlatButton(
-                  onPressed: () {
-                    controller.removeJogador(j, index);
-                    Navigator.pop(context);
-                  },
+                  onPressed: () => {
+                        controller.removeJogador(j, index),
+                        Navigator.pop(context),
+                      },
                   child: Text("Remover")),
             ],
           );
@@ -320,10 +326,10 @@ class WidgetPageListaTime extends StatelessWidget {
                                             icon: Icon(
                                               Icons.add,
                                             ),
-                                            onPressed: () {
+                                            onPressed: () => {
                                               controller.addJogador(
-                                                  item, indexTime);
-                                              Navigator.pop(context);
+                                                  item, indexTime),
+                                              Navigator.pop(context),
                                             },
                                           )
                                         ],
@@ -359,15 +365,19 @@ class WidgetPageListaTime extends StatelessWidget {
                               child: CircleAvatar(
                             child: IconButton(
                                 icon: Icon(Icons.arrow_forward_ios),
-                                onPressed: () {
-                                  if (model.nome.length < 3 ||
-                                      model.nome == "") {
-                                    nomeInvalido(context);
-                                  } else {
-                                    controller.addJogador(model, indexTime);
-                                    Navigator.pop(context);
-                                  }
-                                }),
+                                onPressed: () => {
+                                      if (model.nome.length < 3 ||
+                                          model.nome == "")
+                                        {
+                                          nomeInvalido(context),
+                                        }
+                                      else
+                                        {
+                                          controller.addJogador(
+                                              model, indexTime),
+                                          Navigator.pop(context),
+                                        }
+                                    }),
                           )),
                         ],
                       ),
