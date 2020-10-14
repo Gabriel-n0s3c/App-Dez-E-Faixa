@@ -54,18 +54,63 @@ mixin _$Partida on _PartidaBase, Store {
     });
   }
 
-  final _$tempoAtom = Atom(name: '_PartidaBase.tempo');
+  final _$tempoInMinutesAtom = Atom(name: '_PartidaBase.tempoInMinutes');
 
   @override
-  int get tempo {
-    _$tempoAtom.reportRead();
-    return super.tempo;
+  int get tempoInMinutes {
+    _$tempoInMinutesAtom.reportRead();
+    return super.tempoInMinutes;
   }
 
   @override
-  set tempo(int value) {
-    _$tempoAtom.reportWrite(value, super.tempo, () {
-      super.tempo = value;
+  set tempoInMinutes(int value) {
+    _$tempoInMinutesAtom.reportWrite(value, super.tempoInMinutes, () {
+      super.tempoInMinutes = value;
+    });
+  }
+
+  final _$tempoInSecondsAtom = Atom(name: '_PartidaBase.tempoInSeconds');
+
+  @override
+  int get tempoInSeconds {
+    _$tempoInSecondsAtom.reportRead();
+    return super.tempoInSeconds;
+  }
+
+  @override
+  set tempoInSeconds(int value) {
+    _$tempoInSecondsAtom.reportWrite(value, super.tempoInSeconds, () {
+      super.tempoInSeconds = value;
+    });
+  }
+
+  final _$ganhadorAtom = Atom(name: '_PartidaBase.ganhador');
+
+  @override
+  String get ganhador {
+    _$ganhadorAtom.reportRead();
+    return super.ganhador;
+  }
+
+  @override
+  set ganhador(String value) {
+    _$ganhadorAtom.reportWrite(value, super.ganhador, () {
+      super.ganhador = value;
+    });
+  }
+
+  final _$resultadoAtom = Atom(name: '_PartidaBase.resultado');
+
+  @override
+  String get resultado {
+    _$resultadoAtom.reportRead();
+    return super.resultado;
+  }
+
+  @override
+  set resultado(String value) {
+    _$resultadoAtom.reportWrite(value, super.resultado, () {
+      super.resultado = value;
     });
   }
 
@@ -83,12 +128,48 @@ mixin _$Partida on _PartidaBase, Store {
   }
 
   @override
+  dynamic golTime2() {
+    final _$actionInfo = _$_PartidaBaseActionController.startAction(
+        name: '_PartidaBase.golTime2');
+    try {
+      return super.golTime2();
+    } finally {
+      _$_PartidaBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic empate() {
+    final _$actionInfo =
+        _$_PartidaBaseActionController.startAction(name: '_PartidaBase.empate');
+    try {
+      return super.empate();
+    } finally {
+      _$_PartidaBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic vitoriaTime(String nomeTime) {
+    final _$actionInfo = _$_PartidaBaseActionController.startAction(
+        name: '_PartidaBase.vitoriaTime');
+    try {
+      return super.vitoriaTime(nomeTime);
+    } finally {
+      _$_PartidaBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 placarMax: ${placarMax},
 placarTime1: ${placarTime1},
 placarTime2: ${placarTime2},
-tempo: ${tempo}
+tempoInMinutes: ${tempoInMinutes},
+tempoInSeconds: ${tempoInSeconds},
+ganhador: ${ganhador},
+resultado: ${resultado}
     ''';
   }
 }

@@ -46,7 +46,9 @@ class _PagePartidaPeladaState extends State<PagePartidaPelada> {
                               size: 50,
                               color: Colors.black,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              controllerPartidaPelada.golTime1();
+                            },
                           ),
                         ),
                       ),
@@ -60,7 +62,7 @@ class _PagePartidaPeladaState extends State<PagePartidaPelada> {
                               side: BorderSide(color: Colors.black)),
                           color: Colors.black,
                           onPressed: () {
-                            // controller.reiniciarPlacar();
+                            controllerPartidaPelada.reiniciarPlacar();
                           },
                           child: Icon(
                             Icons.settings_backup_restore,
@@ -80,7 +82,9 @@ class _PagePartidaPeladaState extends State<PagePartidaPelada> {
                                 size: 50,
                                 color: Colors.black,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                controllerPartidaPelada.golTime2();
+                              },
                             ),
                           ),
                         ),
@@ -101,12 +105,20 @@ class _PagePartidaPeladaState extends State<PagePartidaPelada> {
                     children: [
                       Expanded(
                         flex: 1,
-                        child: listarTime(controllerPartidaPelada.time1),
+                        child: listarTime(
+                          controllerPartidaPelada.time1,
+                          controllerPartidaPelada,
+                          1,
+                        ),
                       ),
                       Padding(padding: EdgeInsets.only(left: 2, right: 2)),
                       Expanded(
                         flex: 1,
-                        child: listarTime(controllerPartidaPelada.time2),
+                        child: listarTime(
+                          controllerPartidaPelada.time2,
+                          controllerPartidaPelada,
+                          2,
+                        ),
                       ),
                     ],
                   ),
@@ -126,7 +138,7 @@ class _PagePartidaPeladaState extends State<PagePartidaPelada> {
     );
   }
 
-  Container listarTime(Time time) {
+  Container listarTime(Time time, ControllerPartidaPelada controller, int t) {
     return Container(
       color: Colors.white,
       child: ListView.separated(
@@ -166,7 +178,9 @@ class _PagePartidaPeladaState extends State<PagePartidaPelada> {
                           size: 20,
                           color: Colors.black,
                         ),
-                        onPressed: () {}),
+                        onPressed: () {
+                          controller.golJogador(time: t, jogador: jogador);
+                        }),
                   ),
                   SizedBox(
                     width: 25,
@@ -177,7 +191,9 @@ class _PagePartidaPeladaState extends State<PagePartidaPelada> {
                           size: 50,
                           color: Colors.black,
                         ),
-                        onPressed: () {}),
+                        onPressed: () {
+                          controller.assistenciaJogador(jogador: jogador);
+                        }),
                   ),
                 ],
               ),
@@ -226,7 +242,7 @@ class _PagePartidaPeladaState extends State<PagePartidaPelada> {
                                         Text("${controller.time1.nomeTime}",
                                             style: GoogleFonts.openSans(
                                                 textStyle: TextStyle(
-                                                    fontSize: 22,
+                                                    fontSize: 17,
                                                     color: Colors.white,
                                                     fontWeight:
                                                         FontWeight.w500))),
@@ -284,27 +300,30 @@ class _PagePartidaPeladaState extends State<PagePartidaPelada> {
                               Expanded(
                                 flex: 4,
                                 child: Align(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "0",
-                                        style: GoogleFonts.openSans(
-                                          textStyle: TextStyle(
-                                              fontSize: 70,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                      Text("${controller.time2.nomeTime}",
+                                  child: Observer(builder: (_) {
+                                    return Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "${controller.partida.placarTime2}",
                                           style: GoogleFonts.openSans(
-                                              textStyle: TextStyle(
-                                                  fontSize: 22,
-                                                  color: Colors.white,
-                                                  fontWeight:
-                                                      FontWeight.w500))),
-                                    ],
-                                  ),
+                                            textStyle: TextStyle(
+                                                fontSize: 70,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
+                                        Text("${controller.time2.nomeTime}",
+                                            style: GoogleFonts.openSans(
+                                                textStyle: TextStyle(
+                                                    fontSize: 17,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w500))),
+                                      ],
+                                    );
+                                  }),
                                 ),
                               ),
                             ],
@@ -318,7 +337,7 @@ class _PagePartidaPeladaState extends State<PagePartidaPelada> {
             ),
             Align(
               alignment: Alignment.topCenter,
-              child: WidgetCountDownPelada(),
+              child: WidgetCountDownPelada(controllerPartida: controller),
             ),
           ],
         ),

@@ -60,6 +60,22 @@ class JogadorDAO {
     return resultado;
   }
 
+  //AUTOINCREMENTA GOL
+  void golJogador(Jogador jogador) async {
+    Database db = await _cn.database;
+    int updateCount = await db.rawUpdate(
+        '''UPDATE jogadores SET gols = gols + 1 WHERE id = ?''',
+        [jogador.getId]);
+  }
+
+  //AUTOINCREMENTA GOL
+  void assistenciaJogador(Jogador jogador) async {
+    Database db = await _cn.database;
+
+    db.execute(
+        "UPDATE jogadores SET assistencias = assistencias + 1 WHERE id = ${jogador.getId}");
+  }
+
 //Obtem o número de objetos Jogador no banco de dados
   Future<int> getCount() async {
     Database db = await _cn.database;

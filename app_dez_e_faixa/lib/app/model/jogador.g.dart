@@ -39,6 +39,36 @@ mixin _$Jogador on _JogadorBase, Store {
     });
   }
 
+  final _$golsAtom = Atom(name: '_JogadorBase.gols');
+
+  @override
+  int get gols {
+    _$golsAtom.reportRead();
+    return super.gols;
+  }
+
+  @override
+  set gols(int value) {
+    _$golsAtom.reportWrite(value, super.gols, () {
+      super.gols = value;
+    });
+  }
+
+  final _$assistenciasAtom = Atom(name: '_JogadorBase.assistencias');
+
+  @override
+  int get assistencias {
+    _$assistenciasAtom.reportRead();
+    return super.assistencias;
+  }
+
+  @override
+  set assistencias(int value) {
+    _$assistenciasAtom.reportWrite(value, super.assistencias, () {
+      super.assistencias = value;
+    });
+  }
+
   final _$_JogadorBaseActionController = ActionController(name: '_JogadorBase');
 
   @override
@@ -64,10 +94,23 @@ mixin _$Jogador on _JogadorBase, Store {
   }
 
   @override
+  dynamic setId(int id) {
+    final _$actionInfo =
+        _$_JogadorBaseActionController.startAction(name: '_JogadorBase.setId');
+    try {
+      return super.setId(id);
+    } finally {
+      _$_JogadorBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 nome: ${nome},
-isSelected: ${isSelected}
+isSelected: ${isSelected},
+gols: ${gols},
+assistencias: ${assistencias}
     ''';
   }
 }

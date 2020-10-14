@@ -43,7 +43,7 @@ class WidgetItemListaJogador extends StatelessWidget {
                     icon: Icon(
                       Icons.delete,
                       size: 20,
-                      color: Colors.red,
+                      color: Colors.black,
                     ),
                     onPressed: () => _confirmaExclusao(context, item),
                   ),

@@ -118,28 +118,7 @@ abstract class _ControllerPartidaRapidaBase with Store {
   }
 
   int getTempo() {
-    switch (tempo) {
-      case 1:
-        return 60;
-        break;
-      case 2:
-        return 120;
-        break;
-      case 5:
-        return 300;
-        break;
-      case 10:
-        return 600;
-        break;
-      case 15:
-        return 900;
-        break;
-      case 30:
-        return 1800;
-        break;
-      default:
-        return 0;
-    }
+    return tempo * 60;
   }
 
   @computed

@@ -15,6 +15,8 @@ class ConnectionFactory {
   String jogadorTable = 'jogadores';
   String colId = 'id';
   String colNome = 'nome';
+  String colGol = 'gols';
+  String colAssi = 'assistencias';
 
   //construtor nomeado para criar instância da classe
   ConnectionFactory._createInstance();
@@ -46,7 +48,7 @@ class ConnectionFactory {
   void _createDb(Database db, int newVersion) async {
     await db.execute(
         'CREATE TABLE $jogadorTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, '
-        '$colNome TEXT)');
+        '$colNome TEXT, $colGol INTEGER DEFAULT 0, $colAssi INTEGER DEFAULT 0)');
   }
 
   /* Future<int> insertContato(Jogador jogador) async {

@@ -48,5 +48,21 @@ abstract class _ControllerGlobalJogadorBase with Store {
     _carregarLista();
   }
 
+  @action
+  addGolJogador(Jogador j) {
+    JogadorDAO dao = JogadorDAO();
+    dao.golJogador(j);
+    _carregarLista();
+    print(j.gols);
+  }
+
+  @action
+  addAssitencia(Jogador j) {
+    JogadorDAO dao = JogadorDAO();
+    dao.assistenciaJogador(j);
+    _carregarLista();
+    print(listaJogadores);
+  }
+
   getSize() => listaJogadores.length;
 }

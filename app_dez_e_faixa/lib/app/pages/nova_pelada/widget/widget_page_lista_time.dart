@@ -91,7 +91,6 @@ class WidgetPageListaTime extends StatelessWidget {
                             tooltip: "Opções",
                             icon: Icon(Icons.more_vert),
                             onSelected: (a) {
-                              print(a);
                               a == 1
                                   ? controller.removerTime(indexTime)
                                   : _alterarNomeTime(

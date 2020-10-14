@@ -14,13 +14,42 @@ abstract class _PartidaBase with Store {
   int placarTime2 = 0;
 
   @observable
-  int tempo;
+  int tempoInMinutes;
+
+  @observable
+  int tempoInSeconds;
+
+  @observable
+  String ganhador = "";
+
+  @observable
+  String resultado = "";
 
   @action
   golTime1() {
     placarTime1++;
   }
 
+  @action
+  golTime2() {
+    placarTime2++;
+  }
+
+  @action
+  empate() {
+    resultado = "Empate!";
+    ganhador = "Não houve ganhador";
+  }
+
+  @action
+  vitoriaTime(String nomeTime) {
+    resultado = "Vitória - $nomeTime";
+    ganhador = "Vitória - $nomeTime";
+  }
+
   _PartidaBase(
-      {this.placarTime1, this.placarTime2, this.tempo, this.placarMax});
+      {this.placarTime1,
+      this.placarTime2,
+      this.tempoInSeconds,
+      this.placarMax});
 }

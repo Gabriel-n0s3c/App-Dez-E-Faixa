@@ -50,7 +50,6 @@ abstract class _ControllerSelecionarJogadorBase with Store {
 
   @action
   filtrar(String s) {
-    print(s);
     filtrada = todos
         .where(
             (element) => element.nome.toLowerCase().contains(s.toLowerCase()))

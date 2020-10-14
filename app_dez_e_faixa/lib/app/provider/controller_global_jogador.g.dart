@@ -73,6 +73,28 @@ mixin _$ControllerGlobalJogador on _ControllerGlobalJogadorBase, Store {
   }
 
   @override
+  dynamic addGolJogador(Jogador j) {
+    final _$actionInfo = _$_ControllerGlobalJogadorBaseActionController
+        .startAction(name: '_ControllerGlobalJogadorBase.addGolJogador');
+    try {
+      return super.addGolJogador(j);
+    } finally {
+      _$_ControllerGlobalJogadorBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addAssitencia(Jogador j) {
+    final _$actionInfo = _$_ControllerGlobalJogadorBaseActionController
+        .startAction(name: '_ControllerGlobalJogadorBase.addAssitencia');
+    try {
+      return super.addAssitencia(j);
+    } finally {
+      _$_ControllerGlobalJogadorBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 listaJogadores: ${listaJogadores}

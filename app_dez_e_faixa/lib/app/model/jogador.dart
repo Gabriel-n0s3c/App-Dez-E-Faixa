@@ -12,12 +12,19 @@ abstract class _JogadorBase with Store {
   @observable
   bool isSelected;
 
+  @observable
+  int gols;
+
+  @observable
+  int assistencias;
+
   @action
   setNome(String value) => nome = value;
 
   @action
   setCheck(bool value) => isSelected = value;
 
+  @action
   setId(int id) => _id = id;
 
   int get getId => this._id;
@@ -40,6 +47,8 @@ abstract class _JogadorBase with Store {
   _JogadorBase.fromMap(Map<String, dynamic> map) {
     _id = map['id'];
     nome = map['nome'];
+    gols = map['gols'];
+    assistencias = map['assistencias'];
   }
 
   @override

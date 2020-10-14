@@ -1,3 +1,4 @@
+import 'package:app_dez_e_faixa/app/model/jogador.dart';
 import 'package:app_dez_e_faixa/app/model/partida.dart';
 import 'package:app_dez_e_faixa/app/model/time.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/controller/controller_listar_times_pelada.dart';
@@ -18,9 +19,10 @@ abstract class _ControllerPartidaPeladaBase with Store {
     time2 = controllerListarTimesPelada.timesSelecionados[1];
 
     partida = Partida(
+        placarMax: controllerListarTimesPelada.configPelada.placarMaximo,
         placarTime1: 0,
         placarTime2: 0,
-        tempo: controllerListarTimesPelada.configPelada.tempo);
+        tempoInSeconds: controllerListarTimesPelada.configPelada.tempo * 60);
   }
 
   @observable
@@ -32,7 +34,11 @@ abstract class _ControllerPartidaPeladaBase with Store {
   @observable
   Time time2;
 
+  int controlaQuemGanha = 0;
+
   @observable
+  bool exibirMensagem = false;
+
   @action
   setTime1(value) {
     time1 = value;
@@ -41,5 +47,65 @@ abstract class _ControllerPartidaPeladaBase with Store {
   @action
   setTime2(value) {
     time2 = value;
+  }
+
+  @action
+  golJogador({int time, Jogador jogador}) {
+    controllerListarTimesPelada.configPelada.selecionarJogador.global
+        .addGolJogador(jogador);
+    time == 1 ? golTime1() : golTime2();
+    // jogador.gol();
+  }
+
+  @action
+  assistenciaJogador({int time, Jogador jogador}) {
+    controllerListarTimesPelada.configPelada.selecionarJogador.global
+        .addAssitencia(jogador);
+    // jogador.gol();
+  }
+
+  @action
+  golTime1() {
+    partida.golTime1();
+    verificarGanhador();
+  }
+
+  @action
+  golTime2() {
+    partida.golTime2();
+    verificarGanhador();
+  }
+
+  @action
+  reiniciarPlacar() {
+    partida.placarTime1 = 0;
+    partida.placarTime2 = 0;
+    controlaQuemGanha = 0;
+    exibirMensagem = false;
+  }
+
+  @action
+  verificarGanhador({int t = 5}) {
+    if (t == 1 && controlaQuemGanha == 0) {
+      controlaQuemGanha++;
+      if (partida.placarTime1 == partida.placarTime2) {
+        partida.empate();
+        exibirMensagem = true;
+      } else if (partida.placarTime1 > partida.placarTime2) {
+        partida.vitoriaTime(time1.nomeTime);
+        exibirMensagem = true;
+      } else if (partida.placarTime2 > partida.placarTime1) {
+        partida.vitoriaTime(time2.nomeTime);
+        exibirMensagem = true;
+      }
+    } else {
+      if (partida.placarTime1 == partida.placarMax) {
+        partida.vitoriaTime(time1.nomeTime);
+        exibirMensagem = true;
+      } else if (partida.placarTime2 == partida.placarMax) {
+        partida.vitoriaTime(time2.nomeTime);
+        exibirMensagem = true;
+      }
+    }
   }
 }
