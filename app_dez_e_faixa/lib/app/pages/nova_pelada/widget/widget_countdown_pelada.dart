@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/controller/controller_partida_pelada.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/widget/widget_dialog_partida_pelada.dart';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
@@ -29,6 +31,8 @@ class _WidgetCountDownPeladaState extends State<WidgetCountDownPelada>
     }
     return '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
+
+  AudioCache cache = AudioCache();
 
   @override
   void initState() {
@@ -142,6 +146,7 @@ class _WidgetCountDownPeladaState extends State<WidgetCountDownPelada>
                                       child: FloatingActionButton.extended(
                                           isExtended: true,
                                           onPressed: () {
+                                            cache.play('iniciar_partida.mp3');
                                             animando(true);
                                             controller.reverse(
                                                 from: controller.value == 0.0
@@ -194,6 +199,7 @@ class _WidgetCountDownPeladaState extends State<WidgetCountDownPelada>
     controller.stop();
 
     await Future.delayed(Duration(milliseconds: 50));
+    cache.play("fim_partida.mp3");
     animando(false);
     showGeneralDialog(
       barrierLabel: "Barrier",

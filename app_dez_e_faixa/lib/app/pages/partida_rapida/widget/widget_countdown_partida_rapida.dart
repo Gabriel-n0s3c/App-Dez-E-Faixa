@@ -1,4 +1,5 @@
 import 'package:app_dez_e_faixa/app/pages/partida_rapida/controller/controller_partida_rapida.dart';
+import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -17,6 +18,7 @@ class _CountDownTimerState extends State<CountDownTimer>
     with TickerProviderStateMixin {
   AnimationController controller;
   Icon _icon;
+  AudioCache cache = AudioCache();
 
   String get timerString {
     Duration duration = controller.duration * controller.value;
@@ -45,6 +47,7 @@ class _CountDownTimerState extends State<CountDownTimer>
 
   _dialog() async {
     await Future.delayed(Duration(milliseconds: 50));
+    cache.play('fim_partida.mp3');
     //controller.stop();
     animando(false);
     showGeneralDialog(
@@ -401,6 +404,9 @@ class _CountDownTimerState extends State<CountDownTimer>
                                           child: FloatingActionButton.extended(
                                               heroTag: 3,
                                               onPressed: () {
+                                                cache.play(
+                                                    'iniciar_partida.mp3');
+
                                                 animando(true);
                                                 controller.reverse(
                                                     from:

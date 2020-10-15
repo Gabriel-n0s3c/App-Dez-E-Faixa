@@ -40,7 +40,7 @@ class WidgetDialogPelada extends StatelessWidget {
                           child: Center(
                               child: Text(
                             //"${widget.controle.resultado}",
-                            "${widget.controllerPartida.partida.ganhador}",
+                            "${widget.controllerPartida.partida.msgGanhador}",
                             style: TextStyle(
                               fontSize: 25,
                               color: Colors.white,
