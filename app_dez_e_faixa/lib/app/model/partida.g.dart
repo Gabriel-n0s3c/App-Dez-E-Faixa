@@ -84,16 +84,31 @@ mixin _$Partida on _PartidaBase, Store {
     });
   }
 
+  final _$msgGanhadorAtom = Atom(name: '_PartidaBase.msgGanhador');
+
+  @override
+  String get msgGanhador {
+    _$msgGanhadorAtom.reportRead();
+    return super.msgGanhador;
+  }
+
+  @override
+  set msgGanhador(String value) {
+    _$msgGanhadorAtom.reportWrite(value, super.msgGanhador, () {
+      super.msgGanhador = value;
+    });
+  }
+
   final _$ganhadorAtom = Atom(name: '_PartidaBase.ganhador');
 
   @override
-  String get ganhador {
+  int get ganhador {
     _$ganhadorAtom.reportRead();
     return super.ganhador;
   }
 
   @override
-  set ganhador(String value) {
+  set ganhador(int value) {
     _$ganhadorAtom.reportWrite(value, super.ganhador, () {
       super.ganhador = value;
     });
@@ -150,11 +165,11 @@ mixin _$Partida on _PartidaBase, Store {
   }
 
   @override
-  dynamic vitoriaTime(String nomeTime) {
+  dynamic vitoriaTime(String nomeTime, int numeroTime) {
     final _$actionInfo = _$_PartidaBaseActionController.startAction(
         name: '_PartidaBase.vitoriaTime');
     try {
-      return super.vitoriaTime(nomeTime);
+      return super.vitoriaTime(nomeTime, numeroTime);
     } finally {
       _$_PartidaBaseActionController.endAction(_$actionInfo);
     }
@@ -168,6 +183,7 @@ placarTime1: ${placarTime1},
 placarTime2: ${placarTime2},
 tempoInMinutes: ${tempoInMinutes},
 tempoInSeconds: ${tempoInSeconds},
+msgGanhador: ${msgGanhador},
 ganhador: ${ganhador},
 resultado: ${resultado}
     ''';

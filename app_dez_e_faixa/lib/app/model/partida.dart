@@ -20,7 +20,10 @@ abstract class _PartidaBase with Store {
   int tempoInSeconds;
 
   @observable
-  String ganhador = "";
+  String msgGanhador = "";
+
+  @observable
+  int ganhador = 0;
 
   @observable
   String resultado = "";
@@ -38,13 +41,15 @@ abstract class _PartidaBase with Store {
   @action
   empate() {
     resultado = "Empate!";
-    ganhador = "Não houve ganhador";
+    msgGanhador = "Não houve ganhador";
+    ganhador = 0;
   }
 
   @action
-  vitoriaTime(String nomeTime) {
+  vitoriaTime(String nomeTime, int numeroTime) {
     resultado = "Vitória - $nomeTime";
-    ganhador = "Vitória - $nomeTime";
+    msgGanhador = "Vitória - $nomeTime";
+    ganhador = numeroTime;
   }
 
   _PartidaBase(

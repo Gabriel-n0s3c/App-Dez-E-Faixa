@@ -25,4 +25,16 @@ abstract class _TimeBase with Store {
   }
 
   _TimeBase({this.isSelected, this.nomeTime, this.jogadores});
+
+  @override
+  // ignore: todo
+  // TODO: implement hashCode
+  int get hashCode => super.hashCode;
+
+  @override
+  bool operator ==(Object other) {
+    // ignore: todo
+    // TODO: implement ==
+    return super == other;
+  }
 }

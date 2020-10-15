@@ -69,6 +69,11 @@ class WidgetRaisedButtonJogar extends StatelessWidget {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
+                            actions: [
+                              FlatButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: Text("Ok"))
+                            ],
                             title: Text("Selecione 2 Times!"),
                           );
                         },

@@ -92,20 +92,40 @@ abstract class _ControllerPartidaPeladaBase with Store {
         partida.empate();
         exibirMensagem = true;
       } else if (partida.placarTime1 > partida.placarTime2) {
-        partida.vitoriaTime(time1.nomeTime);
+        partida.vitoriaTime(time1.nomeTime, 1);
         exibirMensagem = true;
       } else if (partida.placarTime2 > partida.placarTime1) {
-        partida.vitoriaTime(time2.nomeTime);
+        partida.vitoriaTime(time2.nomeTime, 2);
         exibirMensagem = true;
       }
     } else {
       if (partida.placarTime1 == partida.placarMax) {
-        partida.vitoriaTime(time1.nomeTime);
+        partida.vitoriaTime(time1.nomeTime, 1);
         exibirMensagem = true;
       } else if (partida.placarTime2 == partida.placarMax) {
-        partida.vitoriaTime(time2.nomeTime);
+        partida.vitoriaTime(time2.nomeTime, 2);
         exibirMensagem = true;
       }
+    }
+  }
+
+  finalizarPartida() {
+    try {
+      if (partida.ganhador == 1) {
+        controllerListarTimesPelada.times
+            .removeWhere((element) => element == time2);
+
+        controllerListarTimesPelada.atualizaCheckbox(time2, false);
+        controllerListarTimesPelada.times.add(time2);
+      } else if (partida.ganhador == 2) {
+        controllerListarTimesPelada.times
+            .removeWhere((element) => element == time1);
+        controllerListarTimesPelada.atualizaCheckbox(time1, false);
+
+        controllerListarTimesPelada.times.add(time1);
+      }
+    } on Exception catch (e) {
+      print(e);
     }
   }
 }

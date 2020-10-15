@@ -63,6 +63,7 @@ class JogadorDAO {
   //AUTOINCREMENTA GOL
   void golJogador(Jogador jogador) async {
     Database db = await _cn.database;
+    // ignore: unused_local_variable
     int updateCount = await db.rawUpdate(
         '''UPDATE jogadores SET gols = gols + 1 WHERE id = ?''',
         [jogador.getId]);
