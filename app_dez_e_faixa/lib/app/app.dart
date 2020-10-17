@@ -1,3 +1,4 @@
+import 'package:app_dez_e_faixa/app/pages/estatisticas/pages/page_estatisticas.dart';
 import 'package:app_dez_e_faixa/app/pages/jogadores/page_form_jogador.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/page_config_pelada.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/page_definir_times.dart';
@@ -42,6 +43,7 @@ class App extends StatelessWidget {
           AppRoutes.DEFINIR_TIMES: (_) => PageDefinirTimes(),
           AppRoutes.LISTAR_TIMES: (_) => PageListaTimes(),
           AppRoutes.PARTIDA_PELADA: (_) => PagePartidaPelada(),
+          AppRoutes.ESTATISTICAS_JOGADORES: (_) => PageEstatisticas(),
         },
       ),
     );

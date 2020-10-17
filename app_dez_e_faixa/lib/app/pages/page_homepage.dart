@@ -88,7 +88,7 @@ class PaginaInicial extends StatelessWidget {
                 icone: "jogadores.png",
               ),
               Cards(
-                rota: AppRoutes.CONFIG_PARTIDA_RAPIDA,
+                rota: AppRoutes.ESTATISTICAS_JOGADORES,
                 nomeCard: "ESTATÍSTICAS",
                 icone: "lucros.png",
               ),

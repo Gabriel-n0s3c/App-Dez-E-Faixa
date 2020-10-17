@@ -5,6 +5,7 @@ import 'package:app_dez_e_faixa/app/pages/nova_pelada/widget/widget_dialog_parti
 import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:wakelock/wakelock.dart';
 
 class WidgetCountDownPelada extends StatefulWidget {
   const WidgetCountDownPelada({Key key, this.controllerPartida})
@@ -146,6 +147,7 @@ class _WidgetCountDownPeladaState extends State<WidgetCountDownPelada>
                                           isExtended: true,
                                           onPressed: () {
                                             cache.play('iniciar_partida.mp3');
+                                            Wakelock.enable();
                                             animando(true);
                                             controller.reverse(
                                                 from: controller.value == 0.0
@@ -196,6 +198,7 @@ class _WidgetCountDownPeladaState extends State<WidgetCountDownPelada>
 
   _dialog() async {
     controller.stop();
+    Wakelock.disable();
 
     await Future.delayed(Duration(milliseconds: 50));
     cache.play("fim_partida.mp3");

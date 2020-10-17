@@ -97,21 +97,21 @@ abstract class _ControllerPartidaRapidaBase with Store {
         exibirMensagem = true;
       } else if (placarTime1 > placarTime2) {
         resultado = "Vitória!";
-        ganhador = "$nomeTime1 ganhou!";
+        ganhador = "Vitória - $nomeTime1!";
         exibirMensagem = true;
       } else if (placarTime2 > placarTime1) {
         resultado = "Vitória!";
-        ganhador = "$nomeTime2 ganhou!";
+        ganhador = "Vitória - $nomeTime2!";
         exibirMensagem = true;
       }
     } else {
       if (placarTime1 == placarMaximo) {
         resultado = "Vitória!";
-        ganhador = "$nomeTime1 ganhou!";
+        ganhador = "Vitória - $nomeTime1!";
         exibirMensagem = true;
       } else if (placarTime2 == placarMaximo) {
         resultado = "Vitória!";
-        ganhador = "$nomeTime2 ganhou!";
+        ganhador = "Vitória - $nomeTime2!";
         setExibirMsg(true);
       }
     }

@@ -15,4 +15,7 @@ class AppRoutes {
   static const LISTAR_TIMES = '/listar-times';
   static const DEFINIR_TIMES = '/definir-times';
   static const PARTIDA_PELADA = '/partida-pelada';
+
+  //ESTATISTICAS
+  static const ESTATISTICAS_JOGADORES = '/estatisticas';
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 import 'package:mobx/mobx.dart';
+import 'package:wakelock/wakelock.dart';
 
 class CountDownTimer extends StatefulWidget {
   final ControllerPartidaRapida controle;
@@ -19,6 +20,8 @@ class _CountDownTimerState extends State<CountDownTimer>
   AnimationController controller;
   Icon _icon;
   AudioCache cache = AudioCache();
+
+  Wakelock tela = Wakelock();
 
   String get timerString {
     Duration duration = controller.duration * controller.value;
@@ -46,9 +49,10 @@ class _CountDownTimerState extends State<CountDownTimer>
   }
 
   _dialog() async {
+    Wakelock.disable();
+    controller.stop();
     await Future.delayed(Duration(milliseconds: 50));
     cache.play('fim_partida.mp3');
-    //controller.stop();
     animando(false);
     showGeneralDialog(
       barrierLabel: "Barrier",
@@ -66,7 +70,7 @@ class _CountDownTimerState extends State<CountDownTimer>
               height: 300,
               margin: EdgeInsets.only(bottom: 50, left: 12, right: 12),
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.7),
+                color: Colors.black.withOpacity(0.8),
                 borderRadius: BorderRadius.circular(40),
               ),
               child: SizedBox.expand(
@@ -168,9 +172,8 @@ class _CountDownTimerState extends State<CountDownTimer>
         borderRadius: BorderRadius.circular(40),
         gradient: LinearGradient(
           colors: <Color>[
-            Color(0xFF0D47A1),
-            Color(0xFF1976D2),
-            Color(0xFF42A5F5),
+            Color(0xFF296e19),
+            Color(0xFF74c961),
           ],
         ),
       ),
@@ -264,13 +267,12 @@ class _CountDownTimerState extends State<CountDownTimer>
           borderRadius: BorderRadius.circular(40),
           gradient: LinearGradient(
             colors: <Color>[
-              Color(0xFF0D47A1),
-              Color(0xFF1976D2),
-              Color(0xFF42A5F5),
+              Color(0xFF296e19),
+              Color(0xFF74c961),
             ],
           ),
         ),
-        child: const Text('Revanche',
+        child: const Text('Jogar Novamente',
             style: TextStyle(
               fontSize: 18,
               color: Colors.white,
@@ -404,6 +406,7 @@ class _CountDownTimerState extends State<CountDownTimer>
                                           child: FloatingActionButton.extended(
                                               heroTag: 3,
                                               onPressed: () {
+                                                Wakelock.enable();
                                                 cache.play(
                                                     'iniciar_partida.mp3');
 
