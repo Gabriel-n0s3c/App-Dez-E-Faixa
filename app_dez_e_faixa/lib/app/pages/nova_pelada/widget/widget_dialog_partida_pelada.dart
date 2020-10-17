@@ -272,7 +272,7 @@ class WidgetDialogPelada extends StatelessWidget {
   RaisedButton botaoFimPartida(context) {
     return RaisedButton(
       onPressed: () {
-        widget.controllerPartida.reiniciarPlacar();
+        widget.controllerPartida.addHistorico();
         controller.reset();
         Navigator.pop(context);
         Navigator.pop(context);

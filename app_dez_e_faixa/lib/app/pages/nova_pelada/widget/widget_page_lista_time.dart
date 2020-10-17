@@ -13,7 +13,14 @@ class WidgetPageListaTime extends StatelessWidget {
   const WidgetPageListaTime({Key key, this.controller}) : super(key: key);
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.green,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage(
+              "assets/fundocampometade1.png",
+            ),
+            fit: BoxFit.cover,
+            alignment: Alignment.bottomRight),
+      ),
       child: Observer(builder: (_) {
         return controller.timesSelecionados == null
             ? Container(
@@ -39,7 +46,7 @@ class WidgetPageListaTime extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
-                        padding: EdgeInsets.only(bottom: 5),
+                        padding: EdgeInsets.only(bottom: 0),
                         child: WidgetRaisedButtonJogar(
                           controller: controller,
                         ),
@@ -190,9 +197,10 @@ class WidgetPageListaTime extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: IconButton(
+                tooltip: "Exlcuir jogador",
                 icon: Icon(
-                  Icons.delete,
-                  color: Colors.red[400],
+                  Icons.cancel,
+                  color: Colors.orange,
                   size: 19,
                 ),
                 onPressed: () {

@@ -19,6 +19,8 @@ abstract class _ControllerPartidaPeladaBase with Store {
     time2 = controllerListarTimesPelada.timesSelecionados[1];
 
     partida = Partida(
+        time1: time1,
+        time2: time2,
         placarMax: controllerListarTimesPelada.configPelada.placarMaximo,
         placarTime1: 0,
         placarTime2: 0,
@@ -92,18 +94,18 @@ abstract class _ControllerPartidaPeladaBase with Store {
         partida.empate();
         exibirMensagem = true;
       } else if (partida.placarTime1 > partida.placarTime2) {
-        partida.vitoriaTime(time1.nomeTime, 1);
+        partida.vitoriaTime(time1, 1);
         exibirMensagem = true;
       } else if (partida.placarTime2 > partida.placarTime1) {
-        partida.vitoriaTime(time2.nomeTime, 2);
+        partida.vitoriaTime(time2, 2);
         exibirMensagem = true;
       }
     } else {
       if (partida.placarTime1 == partida.placarMax) {
-        partida.vitoriaTime(time1.nomeTime, 1);
+        partida.vitoriaTime(time1, 1);
         exibirMensagem = true;
       } else if (partida.placarTime2 == partida.placarMax) {
-        partida.vitoriaTime(time2.nomeTime, 2);
+        partida.vitoriaTime(time2, 2);
         exibirMensagem = true;
       }
     }
@@ -111,21 +113,26 @@ abstract class _ControllerPartidaPeladaBase with Store {
 
   finalizarPartida() {
     try {
-      if (partida.ganhador == 1) {
+      if (partida.nGanhador == 1) {
         controllerListarTimesPelada.times
             .removeWhere((element) => element == time2);
-
         controllerListarTimesPelada.atualizaCheckbox(time2, false);
         controllerListarTimesPelada.times.add(time2);
-      } else if (partida.ganhador == 2) {
+      } else if (partida.nGanhador == 2) {
         controllerListarTimesPelada.times
             .removeWhere((element) => element == time1);
         controllerListarTimesPelada.atualizaCheckbox(time1, false);
-
         controllerListarTimesPelada.times.add(time1);
       }
     } on Exception catch (e) {
       print(e);
     }
+  }
+
+  @action
+  addHistorico() {
+    Partida p;
+    p = this.partida;
+    controllerListarTimesPelada.historicoPartidas.add(p);
   }
 }

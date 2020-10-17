@@ -102,15 +102,60 @@ mixin _$Partida on _PartidaBase, Store {
   final _$ganhadorAtom = Atom(name: '_PartidaBase.ganhador');
 
   @override
-  int get ganhador {
+  Time get ganhador {
     _$ganhadorAtom.reportRead();
     return super.ganhador;
   }
 
   @override
-  set ganhador(int value) {
+  set ganhador(Time value) {
     _$ganhadorAtom.reportWrite(value, super.ganhador, () {
       super.ganhador = value;
+    });
+  }
+
+  final _$time1Atom = Atom(name: '_PartidaBase.time1');
+
+  @override
+  Time get time1 {
+    _$time1Atom.reportRead();
+    return super.time1;
+  }
+
+  @override
+  set time1(Time value) {
+    _$time1Atom.reportWrite(value, super.time1, () {
+      super.time1 = value;
+    });
+  }
+
+  final _$time2Atom = Atom(name: '_PartidaBase.time2');
+
+  @override
+  Time get time2 {
+    _$time2Atom.reportRead();
+    return super.time2;
+  }
+
+  @override
+  set time2(Time value) {
+    _$time2Atom.reportWrite(value, super.time2, () {
+      super.time2 = value;
+    });
+  }
+
+  final _$nGanhadorAtom = Atom(name: '_PartidaBase.nGanhador');
+
+  @override
+  int get nGanhador {
+    _$nGanhadorAtom.reportRead();
+    return super.nGanhador;
+  }
+
+  @override
+  set nGanhador(int value) {
+    _$nGanhadorAtom.reportWrite(value, super.nGanhador, () {
+      super.nGanhador = value;
     });
   }
 
@@ -165,11 +210,11 @@ mixin _$Partida on _PartidaBase, Store {
   }
 
   @override
-  dynamic vitoriaTime(String nomeTime, int numeroTime) {
+  dynamic vitoriaTime(Time time, int numeroTime) {
     final _$actionInfo = _$_PartidaBaseActionController.startAction(
         name: '_PartidaBase.vitoriaTime');
     try {
-      return super.vitoriaTime(nomeTime, numeroTime);
+      return super.vitoriaTime(time, numeroTime);
     } finally {
       _$_PartidaBaseActionController.endAction(_$actionInfo);
     }
@@ -185,6 +230,9 @@ tempoInMinutes: ${tempoInMinutes},
 tempoInSeconds: ${tempoInSeconds},
 msgGanhador: ${msgGanhador},
 ganhador: ${ganhador},
+time1: ${time1},
+time2: ${time2},
+nGanhador: ${nGanhador},
 resultado: ${resultado}
     ''';
   }

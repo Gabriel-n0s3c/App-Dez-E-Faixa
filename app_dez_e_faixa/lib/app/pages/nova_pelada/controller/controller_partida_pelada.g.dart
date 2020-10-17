@@ -162,6 +162,17 @@ mixin _$ControllerPartidaPelada on _ControllerPartidaPeladaBase, Store {
   }
 
   @override
+  dynamic addHistorico() {
+    final _$actionInfo = _$_ControllerPartidaPeladaBaseActionController
+        .startAction(name: '_ControllerPartidaPeladaBase.addHistorico');
+    try {
+      return super.addHistorico();
+    } finally {
+      _$_ControllerPartidaPeladaBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 partida: ${partida},

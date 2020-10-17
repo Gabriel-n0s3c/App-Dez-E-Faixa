@@ -1,4 +1,5 @@
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/controller/controller_listar_times_pelada.dart';
+import 'package:app_dez_e_faixa/app/pages/nova_pelada/widget/widget_page_historico.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/widget/widget_page_lista_time.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,8 @@ class PageListaTimes extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Lista de times "),
+        automaticallyImplyLeading: false,
+        title: Text("Pré-jogo"),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
@@ -25,7 +27,7 @@ class PageListaTimes extends StatelessWidget {
         controller: controllerPage,
         children: [
           WidgetPageListaTime(controller: controller),
-          Container(),
+          WidgetPageHistorico(controller: controller),
         ],
       ),
       bottomNavigationBar: AnimatedBuilder(
@@ -33,7 +35,7 @@ class PageListaTimes extends StatelessWidget {
         builder: (context, child) {
           return BottomNavigationBar(
             currentIndex: controllerPage?.page?.round() ?? 0,
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.white54,
             onTap: (a) {
               controllerPage.jumpToPage(a);
             },

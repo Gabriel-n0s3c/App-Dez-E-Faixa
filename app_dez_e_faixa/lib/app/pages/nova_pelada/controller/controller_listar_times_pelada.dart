@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app_dez_e_faixa/app/model/jogador.dart';
+import 'package:app_dez_e_faixa/app/model/partida.dart';
 import 'package:app_dez_e_faixa/app/model/time.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/controller/controller_config_pelada.dart';
 import 'package:mobx/mobx.dart';
@@ -24,6 +25,9 @@ abstract class _ControllerListarTimesPeladaBase with Store {
   @observable
   ObservableList<Time> times = ObservableList<Time>();
 
+  @observable
+  ObservableList<Partida> historicoPartidas = ObservableList<Partida>();
+
   @computed
   get getSize => times.length;
 
@@ -32,7 +36,7 @@ abstract class _ControllerListarTimesPeladaBase with Store {
     value == null || value == ""
         // ignore: unnecessary_statements
         ? null
-        : times.elementAt(index).setNomeTime(value.toUpperCase());
+        : times.elementAt(index).setNomeTime(value);
     ObservableList<Time> t = ObservableList<Time>();
     t = times;
     times = t;

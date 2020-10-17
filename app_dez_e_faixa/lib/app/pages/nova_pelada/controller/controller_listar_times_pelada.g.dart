@@ -48,6 +48,22 @@ mixin _$ControllerListarTimesPelada on _ControllerListarTimesPeladaBase, Store {
     });
   }
 
+  final _$historicoPartidasAtom =
+      Atom(name: '_ControllerListarTimesPeladaBase.historicoPartidas');
+
+  @override
+  ObservableList<Partida> get historicoPartidas {
+    _$historicoPartidasAtom.reportRead();
+    return super.historicoPartidas;
+  }
+
+  @override
+  set historicoPartidas(ObservableList<Partida> value) {
+    _$historicoPartidasAtom.reportWrite(value, super.historicoPartidas, () {
+      super.historicoPartidas = value;
+    });
+  }
+
   final _$separarTimesAsyncAction =
       AsyncAction('_ControllerListarTimesPeladaBase.separarTimes');
 
@@ -156,6 +172,7 @@ mixin _$ControllerListarTimesPelada on _ControllerListarTimesPeladaBase, Store {
     return '''
 timesSelecionados: ${timesSelecionados},
 times: ${times},
+historicoPartidas: ${historicoPartidas},
 getSize: ${getSize}
     ''';
   }

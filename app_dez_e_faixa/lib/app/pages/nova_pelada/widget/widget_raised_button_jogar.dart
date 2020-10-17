@@ -13,22 +13,21 @@ class WidgetRaisedButtonJogar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
+    return FlatButton(
       onPressed: () {
         _dialogSelecionarTimes(context);
       },
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
       padding: EdgeInsets.all(0.0),
       child: Ink(
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xff0a571f), Color(0xff6bd688)],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-            ),
-            borderRadius: BorderRadius.circular(30.0)),
+          gradient: LinearGradient(
+            colors: [Color(0xff0a571f), Color(0xff6bd688)],
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+          ),
+        ),
         child: Container(
-          constraints: BoxConstraints(maxWidth: 300.0, maxHeight: 50.0),
+          constraints: BoxConstraints(maxHeight: 50.0),
           alignment: Alignment.center,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(
@@ -54,12 +53,13 @@ class WidgetRaisedButtonJogar extends StatelessWidget {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text("Selecione os 2 times! "),
+            title: Text("Selecione dois times! "),
+            actionsPadding: EdgeInsets.all(10),
             actions: [
               FlatButton(
                   onPressed: () => Navigator.pop(context),
                   child: Text("Cancelar")),
-              FlatButton(
+              FloatingActionButton.extended(
                   onPressed: () {
                     if (controller.timesSelecionados.length == 2) {
                       Navigator.of(context).pushNamed(AppRoutes.PARTIDA_PELADA,
@@ -75,18 +75,21 @@ class WidgetRaisedButtonJogar extends StatelessWidget {
                                   child: Text("Ok"))
                             ],
                             title: Text("Selecione 2 Times!"),
+                            content: Text(
+                                "Selecione pelo menos 2 times para jogar."),
                           );
                         },
                       );
                     }
                   },
-                  child: Text("ok")),
+                  icon: Icon(Icons.play_arrow),
+                  label: Text("Jogar")),
             ],
             content: Observer(
               builder: (_) {
                 return Container(
                   height: 500,
-                  width: 200,
+                  width: 300,
                   child: ListView.builder(
                       itemCount: controller.times.length,
                       itemBuilder: (_, index) {

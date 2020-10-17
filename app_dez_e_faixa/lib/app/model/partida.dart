@@ -1,3 +1,4 @@
+import 'package:app_dez_e_faixa/app/model/time.dart';
 import 'package:mobx/mobx.dart';
 part 'partida.g.dart';
 
@@ -23,7 +24,16 @@ abstract class _PartidaBase with Store {
   String msgGanhador = "";
 
   @observable
-  int ganhador = 0;
+  Time ganhador;
+
+  @observable
+  Time time1;
+
+  @observable
+  Time time2;
+
+  @observable
+  int nGanhador;
 
   @observable
   String resultado = "";
@@ -42,19 +52,23 @@ abstract class _PartidaBase with Store {
   empate() {
     resultado = "Empate!";
     msgGanhador = "Não houve ganhador";
-    ganhador = 0;
   }
 
   @action
-  vitoriaTime(String nomeTime, int numeroTime) {
-    resultado = "Vitória - $nomeTime";
-    msgGanhador = "Vitória - $nomeTime";
-    ganhador = numeroTime;
+  vitoriaTime(Time time, int numeroTime) {
+    ganhador = time;
+    nGanhador = numeroTime;
+
+    resultado = "Vitória ";
+    msgGanhador = "Vitória - ${ganhador.nomeTime}";
   }
 
-  _PartidaBase(
-      {this.placarTime1,
-      this.placarTime2,
-      this.tempoInSeconds,
-      this.placarMax});
+  _PartidaBase({
+    this.placarTime1,
+    this.placarTime2,
+    this.tempoInSeconds,
+    this.placarMax,
+    this.time1,
+    this.time2,
+  });
 }

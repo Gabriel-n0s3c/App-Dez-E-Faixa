@@ -3,7 +3,6 @@ import 'dart:math' as math;
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/controller/controller_partida_pelada.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/widget/widget_dialog_partida_pelada.dart';
 import 'package:audioplayers/audio_cache.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
