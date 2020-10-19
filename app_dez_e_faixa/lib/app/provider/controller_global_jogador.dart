@@ -25,6 +25,8 @@ abstract class _ControllerGlobalJogadorBase with Store {
       });
       listaJogadores = value.asObservable();
     });
+
+    dao.getArtillharia();
   }
 
   @action

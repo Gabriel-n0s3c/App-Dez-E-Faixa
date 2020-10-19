@@ -69,12 +69,40 @@ class JogadorDAO {
         [jogador.getId]);
   }
 
-  //AUTOINCREMENTA GOL
+  //AUTOINCREMENTA ASSISTENCIA
   void assistenciaJogador(Jogador jogador) async {
     Database db = await _cn.database;
 
     db.execute(
         "UPDATE jogadores SET assistencias = assistencias + 1 WHERE id = ${jogador.getId}");
+  }
+
+//SELECIONAR JOGADORES ORDENADOS PELOS GOLS
+  Future<List<Jogador>> getArtillharia() async {
+    Database db = await _cn.database;
+
+    var resultado =
+        await db.rawQuery('''SELECT * FROM jogadores order by gols DESC;''');
+
+    List<Jogador> lista = resultado.isNotEmpty
+        ? resultado.map((c) => Jogador.fromMap(c)).toList()
+        : [];
+
+    return lista;
+  }
+
+//SELECIONAR JOGADORES ORDENADOS PELAS ASSISTENCIAS
+  Future<List<Jogador>> getAssistencia() async {
+    Database db = await _cn.database;
+
+    var resultado = await db
+        .rawQuery('''SELECT * FROM jogadores order by assistencias DESC;''');
+
+    List<Jogador> lista = resultado.isNotEmpty
+        ? resultado.map((c) => Jogador.fromMap(c)).toList()
+        : [];
+
+    return lista;
   }
 
 //Obtem o número de objetos Jogador no banco de dados
