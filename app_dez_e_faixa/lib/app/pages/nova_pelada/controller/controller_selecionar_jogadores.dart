@@ -36,8 +36,10 @@ abstract class _ControllerSelecionarJogadorBase with Store {
   int get totalSelecionado => selecionados.length;
 
   @computed
-  ObservableList<Jogador> get naoSelecionados =>
-      todos.where((element) => !element.isSelected).toList().asObservable();
+  ObservableList<Jogador> get naoSelecionados => todos
+      .where((element) => element.isSelected == false)
+      .toList()
+      .asObservable();
 
   @action
   _carregarLista() {

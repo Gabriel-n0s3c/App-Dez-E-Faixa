@@ -16,7 +16,7 @@ abstract class _ControllerListarTimesPeladaBase with Store {
   _ControllerListarTimesPeladaBase({this.configPelada}) {
     configPelada.definirTimes == 1
         ? Timer(Duration(milliseconds: 100), () => separado())
-        : naoSepararTimes();
+        : Timer(Duration(milliseconds: 500), () => naoSepararTimes());
   }
 
   @observable
@@ -131,9 +131,9 @@ abstract class _ControllerListarTimesPeladaBase with Store {
 
   @action
   naoSepararTimes() {
-    configPelada.selecionarJogador.naoSelecionados.clear();
-    configPelada.selecionarJogador.naoSelecionados
-        .addAll(configPelada.selecionarJogador.selecionados);
+    configPelada.selecionarJogador.selecionados.clear();
+    configPelada.selecionarJogador.todos
+        .forEach((element) => {element.isSelected = false});
   }
 
   @action
