@@ -18,4 +18,7 @@ class AppRoutes {
 
   //ESTATISTICAS
   static const ESTATISTICAS_JOGADORES = '/estatisticas';
+
+  //OPÇÕES
+  static const OPCOES = '/opcoes';
 }

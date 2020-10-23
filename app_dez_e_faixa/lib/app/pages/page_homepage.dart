@@ -93,7 +93,7 @@ class PaginaInicial extends StatelessWidget {
                 icone: "lucros.png",
               ),
               Cards(
-                rota: AppRoutes.CONFIG_PARTIDA_RAPIDA,
+                rota: AppRoutes.OPCOES,
                 nomeCard: "OPÇÕES",
                 icone: "definicoes.png",
               ),

@@ -6,6 +6,7 @@ import 'package:app_dez_e_faixa/app/pages/nova_pelada/page_lista_jogadores_nova_
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/page_listar_times.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/page_partida_pelada.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/page_selecionar_jogadores.dart';
+import 'package:app_dez_e_faixa/app/pages/opcoes/pages/page_opcoes.dart';
 import 'package:app_dez_e_faixa/app/pages/partida_rapida/page_configpartida.dart';
 import 'package:app_dez_e_faixa/app/pages/page_homepage.dart';
 import 'package:app_dez_e_faixa/app/pages/jogadores/page_lista_jogadores.dart';
@@ -44,6 +45,7 @@ class App extends StatelessWidget {
           AppRoutes.LISTAR_TIMES: (_) => PageListaTimes(),
           AppRoutes.PARTIDA_PELADA: (_) => PagePartidaPelada(),
           AppRoutes.ESTATISTICAS_JOGADORES: (_) => PageEstatisticas(),
+          AppRoutes.OPCOES: (_) => PageOpcoes(),
         },
       ),
     );
