@@ -19,18 +19,18 @@ class WidgetItemListaJogador extends StatelessWidget {
             leading: Icon(Icons.person),
             title: Text(item.nome == null ? "Jogador sem nome!" : item.nome),
             trailing: Container(
-              width: 150,
+              width: 100,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.remove_red_eye,
-                      size: 20,
-                      color: Colors.black,
-                    ),
-                    onPressed: () => _exibirCarta(context, item),
-                  ),
+                  // IconButton(
+                  //   icon: Icon(
+                  //     Icons.remove_red_eye,
+                  //     size: 20,
+                  //     color: Colors.black,
+                  //   ),
+                  //   onPressed: () => _exibirCarta(context, item),
+                  // ),
                   IconButton(
                     icon: Icon(
                       Icons.edit,
@@ -113,6 +113,7 @@ class WidgetItemListaJogador extends StatelessWidget {
     );
   }
 
+  // ignore: unused_element
   _exibirCarta(context, Jogador item) {
     //controller.stop();
     showGeneralDialog(
