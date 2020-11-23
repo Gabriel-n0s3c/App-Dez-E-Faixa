@@ -6,18 +6,22 @@ class PaginaInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 0,
+      ),
       body: Column(
         children: <Widget>[
           Expanded(
             flex: 0,
             child: Container(
               color: Color(0xFF05500A),
-              child: header,
+              //child: header,
             ),
           ),
           Expanded(
             flex: 5,
             child: Container(
+              padding: EdgeInsets.only(top: 10),
               child: grid,
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -33,15 +37,6 @@ class PaginaInicial extends StatelessWidget {
       ),
     );
   }
-
-  get content => Container(
-        child: Column(
-          children: <Widget>[
-            header,
-            grid,
-          ],
-        ),
-      );
 
   get header => ListTile(
         contentPadding: EdgeInsets.only(left: 20, right: 20, top: 30),
@@ -92,11 +87,15 @@ class PaginaInicial extends StatelessWidget {
                 nomeCard: "ESTATÍSTICAS",
                 icone: "lucros.png",
               ),
-              Cards(
+              /* Cards(
                 rota: AppRoutes.OPCOES,
                 nomeCard: "OPÇÕES",
                 icone: "definicoes.png",
-              ),
+              ), */
+              InfoCards(
+                rota: AppRoutes.FORM_JOGADOR,
+                nomeCard: "SOBRE",
+              )
             ]),
       );
 }
