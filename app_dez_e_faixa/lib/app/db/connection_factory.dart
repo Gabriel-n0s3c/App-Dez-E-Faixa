@@ -11,7 +11,7 @@ class ConnectionFactory {
     return _db;
   }
 
-//usada para definir as colunas da tabeala
+//usada para definir as colunas da tabela
   String jogadorTable = 'jogadores';
   String colId = 'id';
   String colNome = 'nome';
@@ -67,3 +67,4 @@ class ConnectionFactory {
     _db.execute("delete from $jogadorTable");
   }
 }
+// Esse aplicativo foi desenvolvido por Gabriel Marques

@@ -129,7 +129,10 @@ class _PagePartidaPeladaState extends State<PagePartidaPelada> {
                 height: 5,
               ),
               Expanded(
-                child: Container(),
+                child: Container(
+                    child: Center(
+                  child: Text("Anuncie aqui!"),
+                )),
               )
             ],
           ),

@@ -44,7 +44,7 @@ class _PageSobreState extends State<PageSobre> {
               child: Column(
                 children: [
                   CircleAvatar(
-                    backgroundColor: Colors.white,
+                    backgroundImage: Image.asset("assets/icon_app.png").image,
                     radius: 50.0,
                   ),
                   Text(
@@ -104,7 +104,10 @@ class _PageSobreState extends State<PageSobre> {
                           ),
                           color: Colors.white,
                           child: ListTile(
-                            leading: Icon(Typicons.message),
+                            leading: Icon(
+                              Typicons.message,
+                              color: Colors.black,
+                            ),
                             title: Text(
                               "Sobre o App",
                               style: TextStyle(

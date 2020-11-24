@@ -40,17 +40,27 @@ dependencies:
   wakelock:
   contactus: ^1.1.7
   typicons_flutter:
-  url_launcher: ^5.7.10
+  url_launcher: 
+    
+
+  
     
 
 
   
 
 dev_dependencies:
+  flutter_launcher_icons:
   build_runner: ^1.10.0
   mobx_codegen: ^1.1.0
   flutter_test:
     sdk: flutter
+
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon_app_2.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

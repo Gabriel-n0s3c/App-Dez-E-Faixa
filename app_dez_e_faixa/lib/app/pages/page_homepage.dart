@@ -60,7 +60,7 @@ class PaginaInicial extends StatelessWidget {
       );
 
   get grid => Container(
-        padding: EdgeInsets.only(left: 10, right: 7, bottom: 16),
+        padding: EdgeInsets.only(left: 10, right: 7, bottom: 16, top: 20),
         child: GridView.count(
             crossAxisSpacing: 1,
             mainAxisSpacing: 1,
@@ -87,15 +87,14 @@ class PaginaInicial extends StatelessWidget {
                 nomeCard: "ESTATÍSTICAS",
                 icone: "lucros.png",
               ),
-              /* Cards(
-                rota: AppRoutes.OPCOES,
-                nomeCard: "OPÇÕES",
-                icone: "definicoes.png",
-              ), */
               InfoCards(
                 rota: AppRoutes.SOBRE,
                 nomeCard: "SOBRE",
-              )
+              ),
+              NovidadeCards(
+                rota: AppRoutes.OPCOES,
+                nomeCard: "EM BREVE",
+              ),
             ]),
       );
 }
