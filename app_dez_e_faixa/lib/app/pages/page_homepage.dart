@@ -93,7 +93,7 @@ class PaginaInicial extends StatelessWidget {
                 icone: "definicoes.png",
               ), */
               InfoCards(
-                rota: AppRoutes.FORM_JOGADOR,
+                rota: AppRoutes.SOBRE,
                 nomeCard: "SOBRE",
               )
             ]),

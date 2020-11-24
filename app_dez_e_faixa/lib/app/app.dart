@@ -11,6 +11,7 @@ import 'package:app_dez_e_faixa/app/pages/partida_rapida/pages/page_configpartid
 import 'package:app_dez_e_faixa/app/pages/page_homepage.dart';
 import 'package:app_dez_e_faixa/app/pages/jogadores/pages/page_lista_jogadores.dart';
 import 'package:app_dez_e_faixa/app/pages/partida_rapida/pages/page_partidarapida.dart';
+import 'package:app_dez_e_faixa/app/pages/sobre/pages/page_sobre.dart';
 import 'package:app_dez_e_faixa/app/provider/controller_global_jogador.dart';
 import 'package:app_dez_e_faixa/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class App extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: "Dez e Faixa - v1",
+        title: "Dez e Faixa",
         theme: ThemeData(
           primarySwatch: createMaterialColor(Color(0xFF05500a)),
         ),
@@ -46,6 +47,7 @@ class App extends StatelessWidget {
           AppRoutes.PARTIDA_PELADA: (_) => PagePartidaPelada(),
           AppRoutes.ESTATISTICAS_JOGADORES: (_) => PageEstatisticas(),
           AppRoutes.OPCOES: (_) => PageOpcoes(),
+          AppRoutes.SOBRE: (_) => PageSobre(),
         },
       ),
     );

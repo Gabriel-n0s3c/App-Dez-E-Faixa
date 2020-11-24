@@ -21,4 +21,7 @@ class AppRoutes {
 
   //OPÇÕES
   static const OPCOES = '/opcoes';
+
+  //SOBRE
+  static const SOBRE = '/sobre';
 }
