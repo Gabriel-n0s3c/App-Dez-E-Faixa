@@ -11,10 +11,12 @@ class WidgetFormConfigPelada extends StatelessWidget {
     @required this.txt,
     @required this.txt1,
     @required this.focus1,
+    this.tempoPartida,
   }) : super(key: key);
 
   final ControllerConfigPelada controller;
   final TextEditingController txt;
+  final TextEditingController tempoPartida;
   final TextEditingController txt1;
   final FocusNode focus1;
 
@@ -25,7 +27,7 @@ class WidgetFormConfigPelada extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           //DROPDOWN BUTTON PARA SELECIONAR A QUANTIDADE DE MINUTOS DA PARTIDA
-          dropDownTempoPartida(),
+          textFieldTempo(),
 
           //INPUT PARA RECEBER O VALOR DE PLACAR MÁXIMO
           textFieldPlacarMaximo(),
@@ -36,6 +38,37 @@ class WidgetFormConfigPelada extends StatelessWidget {
           //INPUT RADIO
           radioGroup(),
         ],
+      ),
+    );
+  }
+
+  Padding textFieldTempo() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: TextField(
+        autofocus: false,
+        controller: tempoPartida,
+        maxLength: 2,
+        keyboardType: TextInputType.number,
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.digitsOnly
+        ],
+        decoration: new InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            hintText: 'Duração da partida em minutos: ',
+            labelText: "Duração da partida",
+            alignLabelWithHint: false,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            labelStyle: GoogleFonts.roboto(
+                textStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500))),
+        onChanged: (value) {
+          controller.setTempo(int.parse(value));
+        },
       ),
     );
   }
@@ -121,7 +154,7 @@ class WidgetFormConfigPelada extends StatelessWidget {
 
   Padding textFieldPlacarMaximo() {
     return Padding(
-      padding: const EdgeInsets.only(top: 30),
+      padding: const EdgeInsets.only(top: 10),
       child: TextField(
         autofocus: false,
         controller: txt,

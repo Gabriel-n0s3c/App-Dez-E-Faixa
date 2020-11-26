@@ -5,7 +5,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WidgetFormConfigPartida extends StatelessWidget {
-   WidgetFormConfigPartida({
+  WidgetFormConfigPartida({
     Key key,
     @required this.controller,
   }) : super(key: key);
@@ -13,6 +13,7 @@ class WidgetFormConfigPartida extends StatelessWidget {
   final ControllerPartidaRapida controller;
 
   final TextEditingController txt = TextEditingController();
+  final TextEditingController tempoPartida = TextEditingController();
   final TextEditingController txtNomeTime1 = TextEditingController();
   final TextEditingController txtNomeTime2 = TextEditingController();
 
@@ -22,8 +23,11 @@ class WidgetFormConfigPartida extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          //DROPDOWN BUTTON PARA SELECIONAR A QUANTIDADE DE MINUTOS DA PARTIDA
-          dropDownTempoPartida(),
+          /* //DROPDOWN BUTTON PARA SELECIONAR A QUANTIDADE DE MINUTOS DA PARTIDA
+          dropDownTempoPartida(), */
+
+          //INPUT PARA RECEBER O VALOR DE PLACAR MÁXIMO
+          textFieldTempo(),
 
           //INPUT PARA RECEBER O VALOR DE PLACAR MÁXIMO
           textFieldPlacarMaximo(),
@@ -34,6 +38,37 @@ class WidgetFormConfigPartida extends StatelessWidget {
           //INPUT PARA O NOME DO TIME 2
           textFieldNomeTime(2),
         ],
+      ),
+    );
+  }
+
+  Padding textFieldTempo() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 30),
+      child: TextField(
+        autofocus: false,
+        controller: tempoPartida,
+        maxLength: 2,
+        keyboardType: TextInputType.number,
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.digitsOnly
+        ],
+        decoration: new InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            hintText: 'Duração da partida em minutos: ',
+            labelText: "Duração da partida",
+            alignLabelWithHint: false,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            labelStyle: GoogleFonts.roboto(
+                textStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500))),
+        onChanged: (value) {
+          controller.setTempo(int.parse(value));
+        },
       ),
     );
   }
@@ -69,7 +104,7 @@ class WidgetFormConfigPartida extends StatelessWidget {
 
   Padding textFieldPlacarMaximo() {
     return Padding(
-      padding: const EdgeInsets.only(top: 30),
+      padding: const EdgeInsets.only(top: 10),
       child: TextField(
         autofocus: false,
         controller: txt,
