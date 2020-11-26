@@ -19,12 +19,16 @@ class _PageListaJogadoresNovaPeladaState
     final controller = Provider.of<ControllerGlobalJogador>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Jogadores Cadastrados"),
+        title: Observer(builder: (_) {
+          return Text(controller.getSize() == 0
+              ? "Jogadores Cadastrados"
+              : "Jogadores Cadastrados: ${controller.getSize()}");
+        }),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () => _novoJogador(controller),
-          )
+          ),
         ],
       ),
       body: Observer(builder: (_) {

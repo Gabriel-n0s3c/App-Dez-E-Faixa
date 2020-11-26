@@ -17,6 +17,23 @@ class _PageListaJogadoresState extends State<PageListaJogadores> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Lista de jogadores"),
+        actions: [
+          Observer(
+            builder: (_) {
+              return FlatButton(
+                color: Colors.white,
+                onPressed: null,
+                child: Text(
+                  controller.getSize() == 0 ? "" : "${controller.getSize()}",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                  ),
+                ),
+              );
+            },
+          )
+        ],
       ),
       body: Observer(builder: (_) {
         return controller.getSize() == 0
