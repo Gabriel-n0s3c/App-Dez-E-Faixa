@@ -19,55 +19,57 @@ class PageEstatisticas extends StatelessWidget {
   }
 
   _corpo(ControllerEstatisticas controller) {
-    return Observer(
-      builder: (_) {
-        return Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                  child: Center(
-                child: Text(
-                  "Artilheiros",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
+    return Container(
+      child: Observer(
+        builder: (_) {
+          return Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                    child: Center(
+                  child: Text(
+                    "Artilheiros",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                )),
+                Expanded(
+                  flex: 4,
+                  child: Container(
+                    child: _containerArtilheiros(controller.artilheiros, 1),
+                    // ]),
                   ),
                 ),
-              )),
-              Expanded(
-                flex: 4,
-                child: Container(
-                  child: _containerArtilheiros(controller.artilheiros, 1),
-                  // ]),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Container(height: 5, color: Colors.black38),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 20),
-                child: Container(height: 5, color: Colors.black38),
-              ),
-              Expanded(
-                  child: Center(
-                child: Text(
-                  "Assistencias",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
+                Expanded(
+                    child: Center(
+                  child: Text(
+                    "Assistencias",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-              )),
-              Expanded(
-                flex: 4,
-                child: Container(
-                  child: _containerArtilheiros(controller.artilheiros, 2),
-                ),
-              )
-            ],
-          ),
-        );
-      },
+                )),
+                Expanded(
+                  flex: 4,
+                  child: Container(
+                    child: _containerArtilheiros(controller.assistencias, 2),
+                  ),
+                )
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 
