@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "22816498141",
+    "firebase_url": "https://dezefaixa-a1118.firebaseio.com",
+    "project_id": "dezefaixa-a1118",
+    "storage_bucket": "dezefaixa-a1118.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22816498141:android:8ecfd34fe27542a5d21634",
+        "android_client_info": {
+          "package_name": "br.com.gabriel_marques.app_dez_e_faixa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22816498141-qiinlol4cib4ove9d725jl20o4mdvdr0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACtKQ13mfDI44d1xxXR0X1AkkbW0Bk5XE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22816498141-qiinlol4cib4ove9d725jl20o4mdvdr0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-9106797517325235~9353087169"
+    }
+  ],
+  "configuration_version": "1"
+}

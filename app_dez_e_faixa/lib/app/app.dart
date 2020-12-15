@@ -1,3 +1,4 @@
+import 'package:app_dez_e_faixa/app/ads/ads.dart';
 import 'package:app_dez_e_faixa/app/pages/estatisticas/pages/page_estatisticas.dart';
 import 'package:app_dez_e_faixa/app/pages/jogadores/pages/page_form_jogador.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/pages/page_config_pelada.dart';
@@ -14,10 +15,23 @@ import 'package:app_dez_e_faixa/app/pages/partida_rapida/pages/page_partidarapid
 import 'package:app_dez_e_faixa/app/pages/sobre/pages/page_sobre.dart';
 import 'package:app_dez_e_faixa/app/provider/controller_global_jogador.dart';
 import 'package:app_dez_e_faixa/app/routes/app_routes.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    FirebaseAdMob.instance.initialize(appId: Ads.appId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

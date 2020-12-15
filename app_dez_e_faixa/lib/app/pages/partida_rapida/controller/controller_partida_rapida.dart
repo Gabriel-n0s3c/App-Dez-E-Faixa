@@ -15,7 +15,7 @@ abstract class _ControllerPartidaRapidaBase with Store {
   String ganhador = "";
 
   @observable
-  String resultado = "";
+  String resultado = "Empate";
 
   int controlaQuemGanha = 0;
 

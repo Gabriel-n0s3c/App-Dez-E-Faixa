@@ -1,8 +1,10 @@
 import 'dart:math' as math;
 
+import 'package:app_dez_e_faixa/app/ads/ads.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/controller/controller_partida_pelada.dart';
 import 'package:app_dez_e_faixa/app/pages/nova_pelada/widget/widget_dialog_partida_pelada.dart';
 import 'package:audioplayers/audio_cache.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:wakelock/wakelock.dart';
@@ -20,6 +22,7 @@ class _WidgetCountDownPeladaState extends State<WidgetCountDownPelada>
     with TickerProviderStateMixin {
   AnimationController controller;
   Icon _icon;
+  BannerAd _banner;
 
   _WidgetCountDownPeladaState();
 
@@ -44,6 +47,25 @@ class _WidgetCountDownPeladaState extends State<WidgetCountDownPelada>
       duration:
           Duration(seconds: widget.controllerPartida.partida.tempoInSeconds),
     );
+    _loadBanner();
+  }
+
+  dispose() {
+    _banner.dispose();
+    super.dispose();
+  }
+
+  _loadBanner() {
+    _banner = BannerAd(
+      adUnitId: Ads.bannerPelada /* Ads.bannerPelada */,
+      size: AdSize.banner,
+    );
+
+    _banner
+      ..load()
+      ..show(
+        anchorType: AnchorType.bottom,
+      );
   }
 
   @override

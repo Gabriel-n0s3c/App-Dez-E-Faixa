@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:app_dez_e_faixa/app/model/jogador.dart';
 import 'package:app_dez_e_faixa/app/pages/estatisticas/controller/controller_estatisticas.dart';
 import 'package:flutter/material.dart';

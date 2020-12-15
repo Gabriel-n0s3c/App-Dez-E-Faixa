@@ -38,9 +38,12 @@ dependencies:
   flutter_countdown_timer:
   provider:
   wakelock:
-  contactus: ^1.1.7
+  flutter_local_notifications: ^3.0.2
+  awesome_notifications: ^0.0.5+2
   typicons_flutter:
   url_launcher: 
+  firebase_admob: ^0.10.3
+
     
 
   

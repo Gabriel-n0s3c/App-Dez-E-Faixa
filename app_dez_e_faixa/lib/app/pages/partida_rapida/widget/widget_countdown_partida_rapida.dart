@@ -1,5 +1,8 @@
+import 'package:app_dez_e_faixa/app/ads/ads.dart';
+import 'package:app_dez_e_faixa/app/pages/notificacoes/notificacoes.dart';
 import 'package:app_dez_e_faixa/app/pages/partida_rapida/controller/controller_partida_rapida.dart';
 import 'package:audioplayers/audio_cache.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -20,8 +23,8 @@ class _CountDownTimerState extends State<CountDownTimer>
   AnimationController controller;
   Icon _icon;
   AudioCache cache = AudioCache();
-
   Wakelock tela = Wakelock();
+  BannerAd _banner;
 
   String get timerString {
     Duration duration = controller.duration * controller.value;
@@ -42,10 +45,26 @@ class _CountDownTimerState extends State<CountDownTimer>
       vsync: this,
       duration: Duration(seconds: /*10 */ widget.controle.getTempo()),
     );
+
+    _loadBanner();
   }
 
   dispose() {
+    _banner.dispose();
     super.dispose();
+  }
+
+  _loadBanner() {
+    _banner = BannerAd(
+      adUnitId: Ads.bannerPartida,
+      size: AdSize.banner,
+    );
+
+    _banner
+      ..load()
+      ..show(
+        anchorType: AnchorType.top,
+      );
   }
 
   _dialog() async {
@@ -416,6 +435,15 @@ class _CountDownTimerState extends State<CountDownTimer>
                                                         controller.value == 0.0
                                                             ? 1.0
                                                             : controller.value);
+
+                                                /* Notificacoes noti =
+                                                    Notificacoes();
+                                                noti.init();
+                                                noti.scheduleNotification(
+                                                    "${widget.controle.resultado}",
+                                                    "${widget.controle.nomeTime1} ${widget.controle.placarTime1} X ${widget.controle.placarTime2} ${widget.controle.nomeTime2}",
+                                                    controller
+                                                        .duration.inSeconds); */
                                               },
                                               icon: Icon(Icons.play_arrow),
                                               label: Text("Jogar")),
